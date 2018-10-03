@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.wang_.busbook.R;
+import com.example.potatopaloozac.traveldomainproj.R;
 
 import java.util.List;
 
