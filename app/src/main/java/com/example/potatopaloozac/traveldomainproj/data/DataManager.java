@@ -2,15 +2,20 @@ package com.example.potatopaloozac.traveldomainproj.data;
 
 import android.content.Context;
 
+import com.example.potatopaloozac.traveldomainproj.data.database.DBHelper;
+import com.example.potatopaloozac.traveldomainproj.data.database.IDBHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.INetworkHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.NetworkHelper;
 
 public class DataManager implements IDataManager {
 
     private INetworkHelper networkHelper;
+    private IDBHelper dbhelper;
 
     public DataManager(Context context) {
         networkHelper = new NetworkHelper(context);
+        dbhelper = new DBHelper(context);
+        dbhelper.loadDataBase();
     }
 
     @Override
