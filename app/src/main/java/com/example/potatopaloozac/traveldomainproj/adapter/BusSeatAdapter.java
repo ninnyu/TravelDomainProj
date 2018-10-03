@@ -1,6 +1,7 @@
 package com.example.potatopaloozac.traveldomainproj.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ public class BusSeatAdapter extends RecyclerView.Adapter<BusSeatAdapter.MyViewHo
 
     List<BusSeat> seatlist;
     SeatOnClickListener listener;
-    int[] image_array = {R.drawable.seat_available, R.drawable.seat_unavailable, R.drawable.seat_selected, R.drawable.aisle};
+    int[] image_array = {R.drawable.seat_available, R.drawable.seat_unavailable, R.drawable.seat_selected, R.drawable.seat_invisible};
 
     public BusSeatAdapter(List<BusSeat> seatlist, SeatOnClickListener listener) {
         this.seatlist = seatlist;
@@ -35,9 +36,13 @@ public class BusSeatAdapter extends RecyclerView.Adapter<BusSeatAdapter.MyViewHo
         int type = busSeat.getType();
         holder.imageView_seat.setImageResource(image_array[type]);
         if( position% 5 !=2) {
+            Log.d("MyAdapter", ""+position);
             int num = busSeat.getSeatNum();
             holder.textView_num.setText("" + num);
 
+        }
+        else{
+            holder.textView_num.setText(" ");
         }
         holder.bind(busSeat, listener);
 
