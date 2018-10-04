@@ -65,7 +65,7 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
-    public void getRouteInfo(final IDataManager.OnRouteIDListener routeIDListener) {
+    public void getRouteInfo(CityItem start, CityItem destination, final IDataManager.OnRouteIDListener routeIDListener) {
 
         Call<Route> routeCall = apiService.getRoute(
                 41.914196,-88.308685,

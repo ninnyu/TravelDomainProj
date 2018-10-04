@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface INetworkHelper {
 
     void getCityInfoList(OnCityListener cityListener);
-    void getRouteInfo(OnRouteIDListener routeIDListener);
+    void getRouteInfo(CityItem start, CityItem destination, OnRouteIDListener routeIDListener);
     void getBusInfo(OnBusInfoListener busInfoListener);
     void getSeatInfo(OnSeatInfoListener seatInfoListener);
     void getCouponInfoList(OnCouponListener couponListener);

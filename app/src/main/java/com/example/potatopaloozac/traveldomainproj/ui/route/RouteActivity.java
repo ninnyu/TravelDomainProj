@@ -21,7 +21,7 @@ public class RouteActivity extends AppCompatActivity implements IRouteView {
         tv_route = findViewById(R.id.tv_route);
 
         routePresenter = new RoutePresenter(this);
-        routePresenter.onActivityCreated();
+
     }
 
     @Override

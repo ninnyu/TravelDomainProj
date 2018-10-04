@@ -24,6 +24,7 @@ public class CityActivity extends AppCompatActivity implements ICityView {
 
         cityPresenter = new CityPresenter(this);
         cityPresenter.onActivityCreated();
+
     }
 
     @Override

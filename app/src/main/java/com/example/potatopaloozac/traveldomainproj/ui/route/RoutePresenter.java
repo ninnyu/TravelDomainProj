@@ -14,10 +14,7 @@ public class RoutePresenter implements IRoutePresenter, IDataManager.OnRouteIDLi
         dataManager = new DataManager(activity);
     }
 
-    @Override
-    public void onActivityCreated() {
-        dataManager.getRouteInfo(this);
-    }
+
 
     @Override
     public void getRouteID(RouteItem routeItem) {

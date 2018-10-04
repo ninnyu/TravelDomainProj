@@ -10,13 +10,20 @@ public class MyDataBase extends SQLiteOpenHelper{
     private static final String INTEGER_TYPE = " INTEGER";
     private static final String COMMA_SEP = ",";
 
-    private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + Contract.Entry.TABLE_NAME + " (" +
+    private static final String SQL_CREATE_GAME =
+            "CREATE TABLE " + Contract.Entry.TABLE_NAME_GAME + " (" +
                     Contract.Entry._ID + " INTEGER PRIMARY KEY," +
                     Contract.Entry.COLUMN_DATE + TEXT_TYPE + COMMA_SEP +
                     Contract.Entry.COLUMN_TIME + TEXT_TYPE + COMMA_SEP +
                     Contract.Entry.COLUMN_HOME + TEXT_TYPE + COMMA_SEP +
                     Contract.Entry.COLUMN_AWAY + TEXT_TYPE + " )";
+
+    private static final String SQL_CREATE_CITY =
+            "CREATE TABLE " + Contract.Entry.TABLE_NAME_CITY + " (" +
+                    Contract.Entry._ID + " INTEGER PRIMARY KEY," +
+                    Contract.Entry.COLUMN_CITY + TEXT_TYPE + COMMA_SEP +
+                    Contract.Entry.COLUMN_LAT + TEXT_TYPE + COMMA_SEP +
+                    Contract.Entry.COLUMN_LONG + TEXT_TYPE + " )";
 
     public MyDataBase(Context context) {
         super(context, "BusBookDB", null, 1);
@@ -25,7 +32,8 @@ public class MyDataBase extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_GAME);
+        db.execSQL(SQL_CREATE_CITY);
     }
 
     @Override

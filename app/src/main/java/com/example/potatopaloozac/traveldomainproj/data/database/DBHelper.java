@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,10 +30,10 @@ public class DBHelper implements IDBHelper {
     @Override
     public void loadDataBase() {
 
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME_GAME, null);
         if(cursor.moveToFirst()){
             Log.d("loadDB", "not empty");
-//            String cmd = "DELETE FROM " + Contract.Entry.TABLE_NAME;
+//            String cmd = "DELETE FROM " + Contract.Entry.TABLE_NAME_GAME;
 //            sqLiteDatabase.execSQL(cmd);
         }
         else{
@@ -67,7 +68,7 @@ public class DBHelper implements IDBHelper {
                     values.put(Contract.Entry.COLUMN_HOME, home);
                     values.put(Contract.Entry.COLUMN_AWAY, away);
 
-                    sqLiteDatabase.insert(Contract.Entry.TABLE_NAME, null, values);
+                    sqLiteDatabase.insert(Contract.Entry.TABLE_NAME_GAME, null, values);
 
                 }
 
@@ -82,7 +83,7 @@ public class DBHelper implements IDBHelper {
     }
 
     @Override
-    public List<String> findGame(String busdeparturetime, String journyduration, IDataManager.OnGameScheduleListener listener) {
+    public void findGame(String busdeparturetime, String journyduration, IDataManager.OnGameScheduleListener listener) {
 //         busdeparturetime":"09:00:00 PM",
 //         "journyduration":"08:00:00 Hrs",
         String[] busdeparturetime_split = busdeparturetime.split(" ");
@@ -103,7 +104,7 @@ public class DBHelper implements IDBHelper {
         }
         int busdrop_hr = busdeparture_hr + journyduration_hr;
         Log.d("MyGame", " "+ busdeparture_hr+" "+ busdrop_hr);
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME_GAME, null);
         cursor.moveToFirst();
 
         //Log.d("MyGame", " "+flag);
@@ -136,7 +137,34 @@ public class DBHelper implements IDBHelper {
 
         }while(cursor.moveToNext());
 
-        return null;
+    }
+
+    @Override
+    public void saveCity(List<CityItem> cityList) {
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME_CITY, null);
+
+        if(cursor.moveToFirst()){
+            Log.d("MyCity", "Not Empty");
+        }
+        else{
+            Log.d("MyCity", "Empty");
+            for(CityItem cityItem: cityList){
+                String citynm = cityItem.getCityname();
+                String citylat = cityItem.getCitylatitude();
+                String citylong = cityItem.getCitylongtitude();
+
+                Log.d("MyCity", citynm+" "+citylat+" "+citylong);
+
+                ContentValues values = new ContentValues();
+                values.put(Contract.Entry.COLUMN_CITY, citynm);
+                values.put(Contract.Entry.COLUMN_LAT, citylat);
+                values.put(Contract.Entry.COLUMN_LONG, citylong);
+
+                sqLiteDatabase.insert(Contract.Entry.TABLE_NAME_CITY, null, values);
+            }
+
+        }
+
     }
 
 
