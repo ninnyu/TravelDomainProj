@@ -1,5 +1,6 @@
 package com.example.potatopaloozac.traveldomainproj.data;
 
+import com.example.potatopaloozac.traveldomainproj.data.database.IDBHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.INetworkHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
@@ -9,7 +10,7 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.Seatinform
 
 import java.util.ArrayList;
 
-public interface IDataManager extends INetworkHelper {
+public interface IDataManager extends INetworkHelper, IDBHelper {
 
     interface OnCityListener {
         void getCityList(ArrayList<CityItem> cityList);
@@ -30,4 +31,9 @@ public interface IDataManager extends INetworkHelper {
     interface OnCouponListener {
         void getCouponList(ArrayList<CouponsItem> couponList);
     }
+
+    interface OnGameScheduleListener{
+        void updateGame(String game_info);
+    }
+
 }

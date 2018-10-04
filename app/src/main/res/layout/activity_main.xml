@@ -39,4 +39,10 @@
         android:layout_height="wrap_content"
         android:text="Coupon Info" />
 
+    <Button
+        android:id="@+id/bt_gameInfo"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:text="Game Schedule" />
+
 </LinearLayout>

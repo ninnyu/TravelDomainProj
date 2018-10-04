@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.potatopaloozac.traveldomainproj.data.network.model.Coupon;
 import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.city.CityActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.coupon.CouponActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.route.RouteActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.seat.SeatInfoActivity;
 
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Button btSeatInfo;
     @BindView(R.id.bt_couponInfo)
     Button btCouponInfo;
+    @BindView(R.id.bt_gameInfo)
+    Button btGameInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.bt_cityInfo, R.id.bt_routeInfo, R.id.bt_busInfo, R.id.bt_seatInfo, R.id.bt_couponInfo})
+    @OnClick({R.id.bt_cityInfo, R.id.bt_routeInfo, R.id.bt_busInfo, R.id.bt_seatInfo, R.id.bt_couponInfo, R.id.bt_gameInfo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_cityInfo: {
@@ -69,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
+            case R.id.bt_gameInfo:{
+                Intent i = new Intent(MainActivity.this, GameScheduleActivity.class);
+                startActivity(i);
+                break;
+            }
         }
     }
+
+
 }

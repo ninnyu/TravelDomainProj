@@ -20,13 +20,10 @@
         </activity>
         <activity android:name=".ui.city.CityActivity" />
         <activity android:name=".ui.route.RouteActivity" />
-        <activity android:name=".ui.bus.BusInfoActivity"></activity>
-        <activity android:name=".ui.seat.SeatInfoActivity">
-
-        </activity>
-        <activity android:name=".ui.coupon.CouponActivity">
-
-        </activity>
+        <activity android:name=".ui.bus.BusInfoActivity" />
+        <activity android:name=".ui.seat.SeatInfoActivity"></activity>
+        <activity android:name=".ui.coupon.CouponActivity"></activity>
+        <activity android:name=".ui.gameschedule.GameScheduleActivity"></activity>
     </application>
 
 </manifest>

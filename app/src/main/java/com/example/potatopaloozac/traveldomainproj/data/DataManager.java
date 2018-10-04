@@ -7,6 +7,8 @@ import com.example.potatopaloozac.traveldomainproj.data.database.IDBHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.INetworkHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.NetworkHelper;
 
+import java.util.List;
+
 public class DataManager implements IDataManager {
 
     private INetworkHelper networkHelper;
@@ -41,5 +43,15 @@ public class DataManager implements IDataManager {
     @Override
     public void getCouponInfoList(OnCouponListener couponListener) {
         networkHelper.getCouponInfoList(couponListener);
+    }
+
+    @Override
+    public void loadDataBase() {
+
+    }
+
+    @Override
+    public List<String> findGame(String busdeparturetime, String journyduration, IDataManager.OnGameScheduleListener listener) {
+        return dbhelper.findGame(busdeparturetime, journyduration, listener);
     }
 }
