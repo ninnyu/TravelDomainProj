@@ -1,42 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bt_cityInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City Info" />
+    <com.anychart.AnyChartView
+        android:id="@+id/anyChartView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.anychart.AnyChartView>
 
-    <Button
-        android:id="@+id/bt_routeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Route Info" />
-
-    <Button
-        android:id="@+id/bt_busInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bus Info" />
-
-    <Button
-        android:id="@+id/bt_seatInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seat Info" />
-
-    <Button
-        android:id="@+id/bt_couponInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coupon Info" />
-
-</LinearLayout>
+</RelativeLayout>

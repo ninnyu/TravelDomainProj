@@ -18,13 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.city.CityActivity" />
-        <activity android:name=".ui.route.RouteActivity" />
-        <activity android:name=".ui.bus.BusInfoActivity"></activity>
-        <activity android:name=".ui.seat.SeatInfoActivity">
+        <activity android:name=".ui.bus.BusInfoActivity">
 
         </activity>
-        <activity android:name=".ui.coupon.CouponActivity">
+        <activity android:name=".ui.seat.SeatInfoActivity" />
+        <activity android:name=".ui.coupon.CouponActivity" />
+        <activity android:name=".ui.booking.BookingActivity">
+
+        </activity>
+        <activity android:name=".BaseActivity">
 
         </activity>
     </application>
