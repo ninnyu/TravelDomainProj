@@ -7,15 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView {
+=======
+public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
+>>>>>>> master
 
     TextView tv_seatInfo;
     ISeatInfoPresenter seatInfoPresenter;

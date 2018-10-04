@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class NetworkHelper implements INetworkHelper {
 
-    private static final String TAG = "NetworkHelper";
+    private static final String TAG = "NetworkHelperTAG";
 
     private ArrayList<CityItem> cityList;
     private RouteItem routeItem;
@@ -67,14 +67,18 @@ public class NetworkHelper implements INetworkHelper {
     @Override
     public void getRouteInfo(CityItem start, CityItem destination, final IDataManager.OnRouteIDListener routeIDListener) {
 
-        Call<Route> routeCall = apiService.getRoute(
-                41.914196,-88.308685,
-                40.73061,-73.935242);
+        double start_lat = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LAT, "")),
+                start_long = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LONG, "")),
+                end_lat = Double.parseDouble(MySharedPreference.readString(MySharedPreference.END_CITY_LAT, "")),
+                end_long = Double.parseDouble(MySharedPreference.readString(MySharedPreference.END_CITY_LONG, ""));
+
+        final Call<Route> routeCall = apiService.getRoute(start_lat, start_long, end_lat,end_long);
         routeCall.enqueue(new Callback<Route>() {
             @Override
             public void onResponse(Call<Route> call, Response<Route> response) {
                 Log.d(TAG, "onResponse: " + response.body());
                 routeItem = response.body().getRoute().get(0);
+                MySharedPreference.writeInt(MySharedPreference.ROUTE_ID, Integer.parseInt(routeItem.getId()));
                 routeIDListener.getRouteID(routeItem);
             }
 
@@ -89,7 +93,9 @@ public class NetworkHelper implements INetworkHelper {
     @Override
     public void getBusInfo(final IDataManager.OnBusInfoListener busInfoListener) {
 
-        Call<BusInformation> busCall = apiService.getBusInfo(1);
+        int routeID = MySharedPreference.readInt(MySharedPreference.ROUTE_ID, 0);
+
+        Call<BusInformation> busCall = apiService.getBusInfo(routeID);
         busCall.enqueue(new Callback<BusInformation>() {
             @Override
             public void onResponse(Call<BusInformation> call, Response<BusInformation> response) {

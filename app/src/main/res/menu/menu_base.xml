@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home"
+        android:title="Home"
+        android:icon="@drawable/home_blue_24dp"
+        android:orderInCategory="1"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_search"
+        android:title="Search"
+        android:icon="@drawable/bus_blue_24dp"
+        android:orderInCategory="2"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_tripInfo"
+        android:title="Trip Information"
+        android:icon="@drawable/schedule_blue_24dp"
+        android:orderInCategory="3"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_map"
+        android:title="Map"
+        android:icon="@drawable/trip_info_blue_24dp"
+        android:orderInCategory="4"
+        app:showAsAction="always"/>
+</menu>

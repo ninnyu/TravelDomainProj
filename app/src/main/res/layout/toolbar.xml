@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/bt_home"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/home_blue_24dp"/>
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/bt_search"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bus_blue_24dp"/>
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/bt_schedule"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/schedule_blue_24dp"/>
+        <Space
+            android:layout_width="70dp"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/bt_trips"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/trip_info_blue_24dp"/>
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

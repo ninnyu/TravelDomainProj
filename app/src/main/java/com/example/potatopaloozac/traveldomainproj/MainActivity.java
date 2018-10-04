@@ -1,15 +1,12 @@
 package com.example.potatopaloozac.traveldomainproj;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
+<<<<<<< HEAD
 import com.anychart.charts.Cartesian;
 import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.city.CityActivity;
@@ -24,11 +21,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+=======
+import com.anychart.charts.TagCloud;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> master
 
-    private static final String TAG = "MainActivity";
+public class MainActivity extends BaseActivity {
 
+    private static final String TAG = "MainActivityTAG";
+
+<<<<<<< HEAD
     @BindView(R.id.bt_cityInfo)
     Button btCityInfo;
     @BindView(R.id.bt_routeInfo)
@@ -42,13 +46,16 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bt_gameInfo)
     Button btGameInfo;
 
+=======
+    private AnyChartView anyChartView;
+>>>>>>> master
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
+<<<<<<< HEAD
     }
 
     @OnClick({R.id.bt_cityInfo, R.id.bt_routeInfo, R.id.bt_busInfo, R.id.bt_seatInfo, R.id.bt_couponInfo, R.id.bt_gameInfo})
@@ -85,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+=======
+        anyChartView = findViewById(R.id.anyChartView);
+
+        List<DataEntry> dataEntryList = new ArrayList<>();
+
+        dataEntryList.add(new ValueDataEntry("myname0", 123));
+        dataEntryList.add(new ValueDataEntry("myname1", 456));
+        dataEntryList.add(new ValueDataEntry("myname2", 789));
+        dataEntryList.add(new ValueDataEntry("myname3", 12));
+        dataEntryList.add(new ValueDataEntry("myname4", 345));
+
+        TagCloud tagCloud = AnyChart.tagCloud();
+        tagCloud.data(dataEntryList);
+        anyChartView.setChart(tagCloud);
+>>>>>>> master
     }
 
 
