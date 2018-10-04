@@ -13,40 +13,4 @@
         android:layout_height="match_parent">
     </com.anychart.AnyChartView>
 
-<<<<<<< HEAD
-    <Button
-        android:id="@+id/bt_routeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Route Info" />
-
-    <Button
-        android:id="@+id/bt_busInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bus Info" />
-
-    <Button
-        android:id="@+id/bt_seatInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seat Info" />
-
-    <Button
-        android:id="@+id/bt_couponInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coupon Info" />
-
-    <Button
-        android:id="@+id/bt_gameInfo"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:text="Game Schedule" />
-
-
-
-</LinearLayout>
-=======
 </RelativeLayout>
->>>>>>> master

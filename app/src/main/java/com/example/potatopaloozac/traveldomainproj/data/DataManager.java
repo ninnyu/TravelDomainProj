@@ -27,8 +27,8 @@ public class DataManager implements IDataManager {
     }
 
     @Override
-    public void getRouteInfo(CityItem start, CityItem destination, OnRouteIDListener routeIDListener) {
-        networkHelper.getRouteInfo(start, destination, routeIDListener);
+    public void getRouteInfo(OnRouteIDListener routeIDListener) {
+        networkHelper.getRouteInfo(routeIDListener);
     }
 
     @Override

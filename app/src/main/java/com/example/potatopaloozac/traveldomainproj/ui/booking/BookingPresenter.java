@@ -15,14 +15,8 @@ public class BookingPresenter implements IBookingPresenter, IDataManager.OnCityL
     IBookingView bookingView;
     IDataManager dataManager;
 
-<<<<<<< HEAD:app/src/main/java/com/example/potatopaloozac/traveldomainproj/ui/city/CityPresenter.java
-
-    public CityPresenter(CityActivity activity) {
-        cityView = activity;
-=======
     public BookingPresenter(BookingActivity activity) {
         bookingView = activity;
->>>>>>> master:app/src/main/java/com/example/potatopaloozac/traveldomainproj/ui/booking/BookingPresenter.java
         dataManager = new DataManager(activity);
         MySharedPreference.getSharedPreferences(activity);
     }
@@ -34,12 +28,7 @@ public class BookingPresenter implements IBookingPresenter, IDataManager.OnCityL
 
     @Override
     public void getCityList(ArrayList<CityItem> cityList) {
-<<<<<<< HEAD:app/src/main/java/com/example/potatopaloozac/traveldomainproj/ui/city/CityPresenter.java
-        cityView.showCityList(cityList);
         dataManager.saveCity(cityList);
-
-=======
         bookingView.showCityList(cityList);
->>>>>>> master:app/src/main/java/com/example/potatopaloozac/traveldomainproj/ui/booking/BookingPresenter.java
     }
 }
