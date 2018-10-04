@@ -8,10 +8,14 @@ public class MySharedPreference {
 
     private static final String BUS_INFO = "BUS_INFO";
 
+    public static final String START_CITY_NAME = "START_CITY_NAME";
     public static final String START_CITY_LAT = "START_CITY_LAT";
     public static final String START_CITY_LONG = "START_CITY_LONG";
+
+    public static final String END_CITY_NAME = "END_CITY_NAME";
     public static final String END_CITY_LAT = "END_CITY_LAT";
     public static final String END_CITY_LONG = "END_CITY_LONG";
+
     public static final String ROUTE_ID = "ROUTE_ID";
     public static final String BUS_ID = "BUS_ID";
 

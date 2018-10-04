@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.city;
+package com.example.potatopaloozac.traveldomainproj.ui.booking;
 
 import com.example.potatopaloozac.traveldomainproj.data.DataManager;
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager;
@@ -6,13 +6,13 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
 
 import java.util.ArrayList;
 
-public class CityPresenter implements ICityPresenter, IDataManager.OnCityListener {
+public class BookingPresenter implements IBookingPresenter, IDataManager.OnCityListener {
 
-    ICityView cityView;
+    IBookingView bookingView;
     IDataManager dataManager;
 
-    public CityPresenter(CityActivity activity) {
-        cityView = activity;
+    public BookingPresenter(BookingActivity activity) {
+        bookingView = activity;
         dataManager = new DataManager(activity);
     }
 
@@ -23,6 +23,6 @@ public class CityPresenter implements ICityPresenter, IDataManager.OnCityListene
 
     @Override
     public void getCityList(ArrayList<CityItem> cityList) {
-        cityView.showCityList(cityList);
+        bookingView.showCityList(cityList);
     }
 }

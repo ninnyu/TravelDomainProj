@@ -4,10 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
 
-public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView {
+public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
 
     TextView tv_seatInfo;
 
