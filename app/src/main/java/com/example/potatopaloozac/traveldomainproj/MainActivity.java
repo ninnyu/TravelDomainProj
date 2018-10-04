@@ -6,12 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
 import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.city.CityActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.coupon.CouponActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.route.RouteActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.seat.SeatInfoActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bt_gameInfo)
     Button btGameInfo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
 
     }
 
@@ -71,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             }
-            case R.id.bt_gameInfo:{
+            case R.id.bt_gameInfo: {
                 Intent i = new Intent(MainActivity.this, GameScheduleActivity.class);
                 startActivity(i);
                 break;
