@@ -65,7 +65,7 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
-    public void getRouteInfo(final IDataManager.OnRouteIDListener routeIDListener) {
+    public void getRouteInfo(CityItem start, CityItem destination, final IDataManager.OnRouteIDListener routeIDListener) {
 
         double start_lat = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LAT, "")),
                 start_long = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LONG, "")),
