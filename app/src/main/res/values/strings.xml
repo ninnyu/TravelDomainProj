@@ -13,6 +13,13 @@
     <string name="farePerPerson">Fare Per Person:</string>
     <string name="chooseSeats">Choose Seats For This Bus</string>
     <string name="ok">Ok</string>
+    <string name="bookSeats">Book Seats</string>
+    <string name="chooseSeatDesc">
+        Click on the seats that you want to reserve then click the button below to reserve them.
+    </string>
+    <string name="seatAvailable">Available\nSeat</string>
+    <string name="seatUnavailable">Unavailable\nSeat</string>
+    <string name="seatSelected">Selected\nSeat</string>
 
     <!--ProgressDialog-->
     <string name="loadingDataTitle">

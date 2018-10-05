@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.seat.SeatInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
@@ -69,10 +71,11 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
 
         String from = MySharedPreference.readString(MySharedPreference.START_CITY_NAME, "");
         String going = MySharedPreference.readString(MySharedPreference.END_CITY_NAME, "");
+        String date = MySharedPreference.readString(MySharedPreference.DEPARTURE_DATE, "Today");
 
         tvBusInfoLeavingFrom.setText(from);
         tvBusInfoGoingTo.setText(going);
-        tvBusInfoDepartureDate.setText("Today");
+        tvBusInfoDepartureDate.setText(date);
         tvBusInfoBusType.setText(businformationItem.getBustype());
         tvBusInfoDuration.setText(businformationItem.getJournyduration());
         tvBusInfoDepartureTime.setText(businformationItem.getBusdeparturetime());
@@ -87,6 +90,8 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
             case R.id.bt_home:
                 break;
             case R.id.bt_search:
+                i = new Intent(this, BookingActivity.class);
+                startActivity(i);
                 break;
             case R.id.bt_schedule:
                 break;

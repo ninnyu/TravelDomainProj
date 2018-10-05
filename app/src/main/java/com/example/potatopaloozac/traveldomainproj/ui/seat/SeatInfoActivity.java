@@ -6,15 +6,17 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
-import com.example.potatopaloozac.traveldomainproj.adapter.GameSchedule;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 
 import java.util.ArrayList;
@@ -28,16 +30,17 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
 
     private static final String TAG = "SeatInfoActivityTAG";
 
-    TextView tv_seatInfo;
-    ISeatInfoPresenter seatInfoPresenter;
-    List<BusSeat> mylist;
-    RecyclerView recyclerView_seat;
-    BusSeatAdapter myAdapter;
-    static int columns = 5;
     @BindView(R.id.bt_schedule)
     Button btSchedule;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    private TextView tv_seatInfo;
+    private ISeatInfoPresenter seatInfoPresenter;
+    private List<BusSeat> mylist;
+    private RecyclerView recyclerView_seat;
+    private BusSeatAdapter myAdapter;
+    private static int columns = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +103,27 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
         }
     }
 
-    @OnClick(R.id.bt_schedule)
-    public void onViewClicked() {
-        Bundle b = getIntent().getExtras();
-        Intent i = new Intent(this, GameScheduleActivity.class);
-        i.putExtras(b);
-        startActivity(i);
+    @OnClick({R.id.bt_bookSeats, R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    public void onViewClicked(View view) {
+        Intent i;
+        switch (view.getId()) {
+            case R.id.bt_bookSeats:
+                Toast.makeText(this, "Seats are now booked. Please pay.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.bt_home:
+                break;
+            case R.id.bt_search:
+                i = new Intent(this, BookingActivity.class);
+                startActivity(i);
+                break;
+            case R.id.bt_schedule:
+                Bundle b = getIntent().getExtras();
+                i = new Intent(this, GameScheduleActivity.class);
+                i.putExtras(b);
+                startActivity(i);
+                break;
+            case R.id.bt_trips:
+                break;
+        }
     }
 }

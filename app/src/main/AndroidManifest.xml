@@ -12,11 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ui.bus.BusInfoActivity" />
-        <activity android:name=".ui.seat.SeatInfoActivity" />
-        <activity android:name=".ui.coupon.CouponActivity" />
-        <activity android:name=".ui.gameschedule.GameScheduleActivity" />
-        <activity android:name=".ui.booking.BookingActivity">
+        <activity
+            android:name=".ui.bus.BusInfoActivity"
+            android:theme="@style/NoAnimTheme"/>
+        <activity
+            android:name=".ui.seat.SeatInfoActivity"
+            android:theme="@style/NoAnimTheme"/>
+        <activity
+            android:name=".ui.coupon.CouponActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.gameschedule.GameScheduleActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.booking.BookingActivity"
+            android:theme="@style/NoAnimTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

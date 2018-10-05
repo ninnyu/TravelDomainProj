@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
 import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
         bookingPresenter = new BookingPresenter(this);
         bookingPresenter.onActivityCreated();
 
+        MySharedPreference.writeString(MySharedPreference.DEPARTURE_DATE, "Today");
+
         cvDeparture.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 String s = (month + 1) + "-" + dayOfMonth + "-" + year;
@@ -90,7 +93,7 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
                     });
                     alertDialogBuilder.show();
                 } else {
-                    i = new Intent(BookingActivity.this, BusInfoActivity.class);
+                    i = new Intent(this, BusInfoActivity.class);
                     startActivity(i);
                     break;
                 }
