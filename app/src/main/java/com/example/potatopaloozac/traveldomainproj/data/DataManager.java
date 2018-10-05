@@ -47,6 +47,13 @@ public class DataManager implements IDataManager {
     }
 
     @Override
+    public void findRoute(String city_start, String city_destination, String city_transfer, OnTransferListener listener) {
+        networkHelper.findRoute(city_start, city_destination, city_transfer, listener);
+
+    }
+
+
+    @Override
     public void loadDataBase() {
 
     }
@@ -60,4 +67,11 @@ public class DataManager implements IDataManager {
     public void saveCity(List<CityItem> cityList) {
         dbhelper.saveCity(cityList);
     }
+
+    @Override
+    public void findTransfer(String city_start, String city_destination, OnTransferListener listener) {
+        dbhelper.findTransfer(city_start, city_destination, listener);
+    }
+
+
 }

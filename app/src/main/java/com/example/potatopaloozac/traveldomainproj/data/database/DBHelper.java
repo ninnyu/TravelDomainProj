@@ -167,5 +167,24 @@ public class DBHelper implements IDBHelper {
 
     }
 
+    @Override
+    public void findTransfer(String city_start, String city_destination, IDataManager.OnTransferListener listener) {
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ Contract.Entry.TABLE_NAME_CITY, null);
+        cursor.moveToFirst();
+
+        do{
+            String city_nm = cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_CITY));
+            String city_lat = cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_LAT));
+            String city_long = cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_LONG));
+            String city_transfer = city_nm+ "_"+ city_lat+"_"+ city_long;
+
+            //Log.d("MyTrans", city_transfer);
+            listener.findRoute(city_start, city_destination, city_transfer);
+
+        }while(cursor.moveToNext());
+
+
+    }
+
 
 }
