@@ -37,6 +37,10 @@ public class NetworkHelper implements INetworkHelper {
     private Context context;
     private ApiService apiService;
 
+    boolean flag_start_transfer;
+    boolean flag_transfer_destination;
+    //String city_transfer;
+
     public NetworkHelper(Context context) {
         this.context = context;
         this.apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
@@ -77,9 +81,11 @@ public class NetworkHelper implements INetworkHelper {
             @Override
             public void onResponse(Call<Route> call, Response<Route> response) {
                 Log.d(TAG, "onResponse: " + response.body());
-                routeItem = response.body().getRoute().get(0);
-                MySharedPreference.writeInt(MySharedPreference.ROUTE_ID, Integer.parseInt(routeItem.getId()));
-                routeIDListener.getRouteID(routeItem);
+                if(response.body().getRoute()!=null) {
+                    routeItem = response.body().getRoute().get(0);
+                    MySharedPreference.writeInt(MySharedPreference.ROUTE_ID, Integer.parseInt(routeItem.getId()));
+                    routeIDListener.getRouteID(routeItem);
+                }
             }
 
             @Override
@@ -151,4 +157,84 @@ public class NetworkHelper implements INetworkHelper {
             }
         });
     }
+
+    @Override
+    public boolean findRoute(String city_start, String city_destination, String city_transfer, final IDataManager.OnTransferListener listener) {
+
+        String[] city_transfer_split = city_transfer.split("_");
+        final String city_nm =  city_transfer_split[0];
+        String city_lat = city_transfer_split[1];
+        String city_long = city_transfer_split[2];
+
+        //Log.d("MyTransfer", city_nm+" "+city_lat+" "+city_long);
+
+        final double transfer_lat = Double.parseDouble(city_lat);
+        final double transfer_long = Double.parseDouble(city_long);
+
+        flag_start_transfer = false;
+        flag_transfer_destination = false;
+
+        final double start_lat = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LAT, "")),
+                start_long = Double.parseDouble(MySharedPreference.readString(MySharedPreference.START_CITY_LONG, "")),
+                end_lat = Double.parseDouble(MySharedPreference.readString(MySharedPreference.END_CITY_LAT, "")),
+                end_long = Double.parseDouble(MySharedPreference.readString(MySharedPreference.END_CITY_LONG, ""));
+
+
+
+        Call<Route> routeCall = apiService.getRoute(start_lat, start_long, transfer_lat,transfer_long);
+        routeCall.enqueue(new Callback<Route>() {
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+                Log.d("MyTransfer", ""+ start_lat+ " "+ start_long+" "+city_nm);
+                Log.d("MyTransfer", "onResponse: " + response.body());
+                //routeItem = response.body().getRoute().get(0);
+                if (response.body().getRoute() != null){
+                    Log.d("MyTransfer", "good");
+                    flag_start_transfer = true;
+                    listener.addStartTransfer(city_nm,true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+                //Log.d("MyTransfer", ""+ start_lat+ " "+ start_long+" "+city_nm);
+                //Log.d("MyTransfer", "onFailure: " + t.getMessage());
+                listener.addStartTransfer(city_nm,false);
+            }
+        });
+
+        routeCall = apiService.getRoute(transfer_lat,transfer_long, end_lat, end_long);
+        routeCall.enqueue(new Callback<Route>() {
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+                Log.d("MyTransfer", ""+ start_lat+ " "+ start_long+" "+city_nm);
+                Log.d("MyTransfer", "onResponse: " + response.body());
+                //routeItem = response.body().getRoute().get(0);
+                if (response.body().getRoute() != null){
+                    flag_transfer_destination = true;
+                    Log.d("MyTransfer", "good");
+                    listener.addTransferDestination(city_nm,true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+                //Log.d("MyTransfer", ""+ start_lat+ " "+ start_long+" "+city_nm);
+                //Log.d("MyTransfer", "onFailure: " + t.getMessage());
+                listener.addTransferDestination(city_nm,false);
+            }
+        });
+
+
+
+        Log.d("MyTransfer1", city_nm+""+ flag_start_transfer+" "+flag_transfer_destination);
+//        if(flag_start_transfer&&flag_transfer_destination){
+//            Log.d("Transfer Success", city_nm);
+//            return true;
+//        }
+
+        return false;
+    }
+
+
 }

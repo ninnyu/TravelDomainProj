@@ -1,5 +1,6 @@
 package com.example.potatopaloozac.traveldomainproj.ui.bus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.ui.transfer.TransferActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import butterknife.BindView;
@@ -45,6 +47,8 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
     Toolbar toolbar;
 
     IBusInfoPresenter busInfoPresenter;
+    @BindView(R.id.button_transfer)
+    Button buttonTransfer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,7 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
         tvBusInfoFare.setText(businformationItem.getFare());
     }
 
-    @OnClick({R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    @OnClick({R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips,R.id.button_transfer})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_home:
@@ -84,6 +88,12 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
                 break;
             case R.id.bt_trips:
                 break;
+            case R.id.button_transfer:
+                Intent i_transfer = new Intent(BusInfoActivity.this, TransferActivity.class);
+                startActivity(i_transfer);
+                break;
         }
     }
+
+
 }
