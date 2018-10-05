@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">TravelDomainProj</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">2500316826660076</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb2500316826660076</string>
+
+    <string name="facebook_app_id">2500316826660076</string>
+    <string name="fb_login_protocol_scheme">fb2500316826660076</string>
+
+    <string name="app_name">Road Trip</string>
     <string name="login">Login</string>
     <string name="bookTrip">Book A Trip</string>
     <string name="leavingFrom">Leaving From:</string>
@@ -11,5 +19,41 @@
     <string name="departure">Departure:</string>
     <string name="arrival">Arrival:</string>
     <string name="farePerPerson">Fare Per Person:</string>
-    <string name="bookThis">Book This</string>
+    <string name="chooseSeats">Choose Seats For This Bus</string>
+    <string name="ok">Ok</string>
+    <string name="bookSeats">Book Seats</string>
+    <string name="chooseSeatDesc">
+        Click on the seats that you want to reserve then click the button below to reserve them.
+    </string>
+    <string name="seatAvailable">Available\nSeat</string>
+    <string name="seatUnavailable">Unavailable\nSeat</string>
+    <string name="seatSelected">Selected\nSeat</string>
+
+    <!--ProgressDialog-->
+    <string name="loadingDataTitle">
+        Loading Data
+    </string>
+    <string name="loadingDataMessage">
+        Loading data from the server. Please wait…
+    </string>
+
+    <!--AlertDialog-->
+    <string name="cannotLoadDataTitle">
+        Failed To Load
+    </string>
+    <string name="cannotLoadDataMessage">
+        Failed to load data from the server. Please try again later…
+    </string>
+    <string name="sameCityTitle">
+        Same City
+    </string>
+    <string name="sameCityMessage">
+        You are already at your destination. Please choose a different city.
+    </string>
+    <string name="transferTitle">
+        No Direct Route Available
+    </string>
+    <string name="transferMessage">
+        There is no direct route available for the cities you chose. Would you consider one with a transfer instead?
+    </string>
 </resources>

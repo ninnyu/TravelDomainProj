@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1096559127937",
+    "firebase_url": "https://traveldomainproj-1538517295077.firebaseio.com",
+    "project_id": "traveldomainproj-1538517295077",
+    "storage_bucket": "traveldomainproj-1538517295077.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096559127937:android:a2b13fb403033a2a",
+        "android_client_info": {
+          "package_name": "com.example.potatopaloozac.traveldomainproj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096559127937-frl88gqcvat5jg1mba7dnfhem7plot7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDocbmmzy0Y5xEBxNV9nCVKGpzTwE9i6Iw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
