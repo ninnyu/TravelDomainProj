@@ -19,7 +19,7 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.Route;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.RouteItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatInformation;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
-import com.example.potatopaloozac.traveldomainproj.ui.transfer.TransferActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.transfer.TransferActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.ApiService;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 import com.example.potatopaloozac.traveldomainproj.utils.RetrofitInstance;
@@ -86,6 +86,17 @@ public class NetworkHelper implements INetworkHelper {
 
             @Override
             public void onFailure(Call<City> call, Throwable t) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setTitle(R.string.cannotLoadDataTitle);
+                alertDialogBuilder.setMessage(R.string.cannotLoadDataMessage);
+
+                alertDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialogBuilder.show();
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });

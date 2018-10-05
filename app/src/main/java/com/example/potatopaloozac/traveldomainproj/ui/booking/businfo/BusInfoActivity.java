@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.bus;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.businfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,7 @@ import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.seat.SeatInfoActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import butterknife.BindView;

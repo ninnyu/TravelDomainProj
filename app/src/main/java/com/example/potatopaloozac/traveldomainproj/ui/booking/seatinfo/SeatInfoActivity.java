@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.seat;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.payment.PaymentActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 
 import java.util.ArrayList;
@@ -108,7 +109,8 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
         Intent i;
         switch (view.getId()) {
             case R.id.bt_bookSeats:
-                Toast.makeText(this, "Seats are now booked. Please pay.", Toast.LENGTH_SHORT).show();
+                i = new Intent(this, PaymentActivity.class);
+                startActivity(i);
                 break;
             case R.id.bt_home:
                 break;

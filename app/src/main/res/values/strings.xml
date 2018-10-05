@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">TravelDomainProj</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">2500316826660076</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb2500316826660076</string>
+
+    <string name="facebook_app_id">2500316826660076</string>
+    <string name="fb_login_protocol_scheme">fb2500316826660076</string>
+
+    <string name="app_name">Road Trip</string>
     <string name="login">Login</string>
     <string name="bookTrip">Book A Trip</string>
     <string name="leavingFrom">Leaving From:</string>

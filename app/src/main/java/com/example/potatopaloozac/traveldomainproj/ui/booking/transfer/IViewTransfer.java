@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.transfer;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
 public interface IViewTransfer {
 

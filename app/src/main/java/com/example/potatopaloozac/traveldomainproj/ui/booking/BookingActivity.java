@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,12 +15,10 @@ import android.widget.Spinner;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
-import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
