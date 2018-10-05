@@ -47,9 +47,9 @@ public class DataManager implements IDataManager {
     }
 
     @Override
-    public boolean findRoute(String city_start, String city_destination, String city_transfer, OnTransferListener listener) {
-        boolean flag = networkHelper.findRoute(city_start, city_destination, city_transfer, listener);
-        return false;
+    public void findRoute(String city_start, String city_destination, String city_transfer, OnTransferListener listener) {
+        networkHelper.findRoute(city_start, city_destination, city_transfer, listener);
+
     }
 
 

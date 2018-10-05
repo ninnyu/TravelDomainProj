@@ -159,7 +159,7 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
-    public boolean findRoute(String city_start, String city_destination, String city_transfer, final IDataManager.OnTransferListener listener) {
+    public void findRoute(String city_start, String city_destination, String city_transfer, final IDataManager.OnTransferListener listener) {
 
         String[] city_transfer_split = city_transfer.split("_");
         final String city_nm =  city_transfer_split[0];
@@ -225,15 +225,6 @@ public class NetworkHelper implements INetworkHelper {
             }
         });
 
-
-
-        Log.d("MyTransfer1", city_nm+""+ flag_start_transfer+" "+flag_transfer_destination);
-//        if(flag_start_transfer&&flag_transfer_destination){
-//            Log.d("Transfer Success", city_nm);
-//            return true;
-//        }
-
-        return false;
     }
 
 

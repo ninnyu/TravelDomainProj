@@ -32,12 +32,8 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     }
 
     @Override
-    public boolean findRoute(String city_start, String city_destination, String city_transfer) {
-
-        //Log.d("MyTrans", city_transfer);
-        boolean flag = manager.findRoute(city_start, city_destination, city_transfer, this);
-
-        return false;
+    public void findRoute(String city_start, String city_destination, String city_transfer) {
+        manager.findRoute(city_start, city_destination, city_transfer, this);
     }
 
     @Override

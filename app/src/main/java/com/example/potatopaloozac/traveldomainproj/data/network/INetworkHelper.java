@@ -13,5 +13,5 @@ public interface INetworkHelper {
     void getBusInfo(OnBusInfoListener busInfoListener);
     void getSeatInfo(OnSeatInfoListener seatInfoListener);
     void getCouponInfoList(OnCouponListener couponListener);
-    boolean findRoute(String city_start, String city_destination, String city_transfer, IDataManager.OnTransferListener listener);
+    void findRoute(String city_start, String city_destination, String city_transfer, IDataManager.OnTransferListener listener);
 }

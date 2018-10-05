@@ -179,7 +179,7 @@ public class DBHelper implements IDBHelper {
             String city_transfer = city_nm+ "_"+ city_lat+"_"+ city_long;
 
             //Log.d("MyTrans", city_transfer);
-            boolean flag_transfer = listener.findRoute(city_start, city_destination, city_transfer);
+            listener.findRoute(city_start, city_destination, city_transfer);
 
         }while(cursor.moveToNext());
 
