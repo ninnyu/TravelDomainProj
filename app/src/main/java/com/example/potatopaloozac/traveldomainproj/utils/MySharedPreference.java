@@ -19,6 +19,11 @@ public class MySharedPreference {
     public static final String ROUTE_ID = "ROUTE_ID";
     public static final String BUS_ID = "BUS_ID";
 
+    public static final String BUS_DURATION = "BUS_DURATION";
+    public static final String BUS_DEPARTURE = "BUS_DEPARTURE";
+
+    public static final String DEPARTURE_DATE = "DEPARTURE_DATE";
+
     private static SharedPreferences sp;
 
     private MySharedPreference() {

@@ -11,5 +11,34 @@
     <string name="departure">Departure:</string>
     <string name="arrival">Arrival:</string>
     <string name="farePerPerson">Fare Per Person:</string>
-    <string name="bookThis">Book This</string>
+    <string name="chooseSeats">Choose Seats For This Bus</string>
+    <string name="ok">Ok</string>
+
+    <!--ProgressDialog-->
+    <string name="loadingDataTitle">
+        Loading Data
+    </string>
+    <string name="loadingDataMessage">
+        Loading data from the server. Please wait…
+    </string>
+
+    <!--AlertDialog-->
+    <string name="cannotLoadDataTitle">
+        Failed To Load
+    </string>
+    <string name="cannotLoadDataMessage">
+        Failed to load data from the server. Please try again later…
+    </string>
+    <string name="sameCityTitle">
+        Same City
+    </string>
+    <string name="sameCityMessage">
+        You are already at your destination. Please choose a different city.
+    </string>
+    <string name="transferTitle">
+        No Direct Route Available
+    </string>
+    <string name="transferMessage">
+        There is no direct route available for the cities you chose. Would you consider one with a transfer instead?
+    </string>
 </resources>

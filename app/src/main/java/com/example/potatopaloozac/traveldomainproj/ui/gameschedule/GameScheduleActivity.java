@@ -17,6 +17,8 @@ import java.util.List;
 
 public class GameScheduleActivity extends AppCompatActivity implements IViewGameSchedule{
 
+    private static final String TAG = "GameScheduleActivityTAG";
+
     IPresenterGameschedule presenter;
     List<GameSchedule> mygamelist;
     GameScheduleAdapter adapter;
@@ -42,6 +44,11 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         recyclerView_game.setLayoutManager(manager);
         recyclerView_game.setAdapter(adapter);
 
+        Bundle b = getIntent().getExtras();
+        String bus_departure = b.getString("bus_departure");
+        String[] s = (b.getString("bus_duration")).split("Hrs");
+        String bus_duration = s[0] + ":00:00 Hrs";
+
         /**{
          "Businformation":
          [
@@ -55,14 +62,8 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
          "dropingtime":"04:00:00 AM"}
          ]}
          */
-         String busdeparturetime = "09:00:00 PM";
-         String journyduration = "08:00:00 Hrs";
 
-         presenter.findGame(busdeparturetime, journyduration);
-
-
-
-
+         presenter.findGame(bus_departure, bus_duration);
     }
 
 

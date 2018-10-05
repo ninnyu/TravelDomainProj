@@ -167,11 +167,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
             <Button
+                android:id="@+id/bt_bookingChooseSeats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
                 android:textColor="@android:color/white"
-                android:text="@string/bookThis"/>
+                android:text="@string/chooseSeats"/>
 
         </LinearLayout>
 

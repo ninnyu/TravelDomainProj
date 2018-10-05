@@ -1,5 +1,7 @@
 package com.example.potatopaloozac.traveldomainproj.ui.booking;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.example.potatopaloozac.traveldomainproj.ui.bus.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +50,8 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
     Toolbar toolbar;
 
     private IBookingPresenter bookingPresenter;
-    ArrayList<CityItem> cityList;
+    private ArrayList<CityItem> cityList;
+    private CityItem cityStart, cityEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,13 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
 
         bookingPresenter = new BookingPresenter(this);
         bookingPresenter.onActivityCreated();
+
+        cvDeparture.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                String s = (month + 1) + "-" + dayOfMonth + "-" + year;
+                MySharedPreference.writeString(MySharedPreference.DEPARTURE_DATE, s);
+            }
+        });
     }
 
     @OnClick({R.id.bt_bookingSearch, R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
@@ -66,9 +77,23 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
         Intent i;
         switch (view.getId()) {
             case R.id.bt_bookingSearch:
-                i = new Intent(BookingActivity.this, BusInfoActivity.class);
-                startActivity(i);
-                break;
+                if (cityStart.getCityname().equals(cityEnd.getCityname())) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                    alertDialogBuilder.setTitle(R.string.sameCityTitle);
+                    alertDialogBuilder.setMessage(R.string.sameCityMessage);
+
+                    alertDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alertDialogBuilder.show();
+                } else {
+                    i = new Intent(BookingActivity.this, BusInfoActivity.class);
+                    startActivity(i);
+                    break;
+                }
             case R.id.bt_home:
                 break;
             case R.id.bt_search:
@@ -106,21 +131,20 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
 
         switch (parent.getId()) {
             case R.id.sp_cityFrom: {
+                cityStart = cityList.get(position);
                 MySharedPreference.writeString(MySharedPreference.START_CITY_NAME, s);
                 MySharedPreference.writeString(MySharedPreference.START_CITY_LAT, cityList.get(position).getCitylatitude());
                 MySharedPreference.writeString(MySharedPreference.START_CITY_LONG, cityList.get(position).getCitylongtitude());
                 break;
             }
             case R.id.sp_cityGoingTo: {
+                cityEnd = cityList.get(position);
                 MySharedPreference.writeString(MySharedPreference.END_CITY_NAME, s);
                 MySharedPreference.writeString(MySharedPreference.END_CITY_LAT, cityList.get(position).getCitylatitude());
                 MySharedPreference.writeString(MySharedPreference.END_CITY_LONG, cityList.get(position).getCitylongtitude());
                 break;
             }
         }
-
-        Log.d(TAG, "onItemSelected: " + MySharedPreference.readString(MySharedPreference.START_CITY_NAME, "")
-                + " " + MySharedPreference.readString(MySharedPreference.END_CITY_NAME, ""));
     }
 
     @Override
