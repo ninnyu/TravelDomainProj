@@ -32,6 +32,11 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     }
 
     @Override
+    public void getCityInfo(String city_nm) {
+        manager.getCityInfo(city_nm, this);
+    }
+
+    @Override
     public void findRoute(String city_start, String city_destination, String city_transfer) {
         manager.findRoute(city_start, city_destination, city_transfer, this);
     }
@@ -71,4 +76,11 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
             }
         }
     }
+
+    @Override
+    public void setCityInfo(String city_info) {
+        view.setCityInfo(city_info);
+    }
+
+
 }
