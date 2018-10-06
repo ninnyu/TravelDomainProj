@@ -186,5 +186,26 @@ public class DBHelper implements IDBHelper {
 
     }
 
+    @Override
+    public void getCityInfo(String city_nm, IDataManager.OnTransferListener listener) {
+        String whereClause = Contract.Entry.COLUMN_CITY + " = ?";
+        String[] whereArgs = new String[] {
+                city_nm
+        };
+
+        Cursor cursor = sqLiteDatabase.query(Contract.Entry.TABLE_NAME_CITY, null, whereClause, whereArgs,
+                null, null, null);
+
+        Log.d("MyInfo", city_nm+" "+ cursor.moveToFirst());
+
+        if(cursor.moveToFirst()) {
+            String city_lat = cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_LAT));
+            String city_long = cursor.getString(cursor.getColumnIndex(Contract.Entry.COLUMN_LONG));
+            Log.d("MyInfo", city_lat + " " + city_long);
+            String city_info = city_lat + " " + city_long;
+            listener.setCityInfo(city_info);
+        }
+    }
+
 
 }

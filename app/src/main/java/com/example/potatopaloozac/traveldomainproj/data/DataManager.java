@@ -73,5 +73,10 @@ public class DataManager implements IDataManager {
         dbhelper.findTransfer(city_start, city_destination, listener);
     }
 
+    @Override
+    public void getCityInfo(String city_nm, OnTransferListener listener) {
+        dbhelper.getCityInfo(city_nm, listener);
+    }
+
 
 }

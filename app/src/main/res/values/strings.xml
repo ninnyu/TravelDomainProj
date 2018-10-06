@@ -56,4 +56,6 @@
     <string name="transferMessage">
         There is no direct route available for the cities you chose. Would you consider one with a transfer instead?
     </string>
+    <string name="bookThis">Book This</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

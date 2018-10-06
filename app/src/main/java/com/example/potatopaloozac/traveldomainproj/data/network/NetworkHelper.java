@@ -158,9 +158,11 @@ public class NetworkHelper implements INetworkHelper {
             @Override
             public void onResponse(Call<BusInformation> call, Response<BusInformation> response) {
                 progressDialog.dismiss();
-                businformationItem = response.body().getBusinformation().get(0);
-                MySharedPreference.writeInt(MySharedPreference.BUS_ID, Integer.parseInt(businformationItem.getBusid()));
-                busInfoListener.getBusDetails(businformationItem);
+                if(response.body().getBusinformation()!=null) {
+                    businformationItem = response.body().getBusinformation().get(0);
+                    MySharedPreference.writeInt(MySharedPreference.BUS_ID, Integer.parseInt(businformationItem.getBusid()));
+                    busInfoListener.getBusDetails(businformationItem);
+                }
             }
 
             @Override

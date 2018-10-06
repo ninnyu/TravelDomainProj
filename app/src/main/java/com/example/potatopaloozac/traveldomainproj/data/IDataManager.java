@@ -40,6 +40,7 @@ public interface IDataManager extends INetworkHelper, IDBHelper {
         void findRoute(String city_start, String city_destination, String city_transfer);
         void addStartTransfer(String city_nm, boolean flag);
         void addTransferDestination(String city_nm, boolean flag);
+        void setCityInfo(String city_info);
     }
 
 }
