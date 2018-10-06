@@ -19,19 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ui.bus.BusInfoActivity" />
-        <activity android:name=".ui.seat.SeatInfoActivity" />
+        <activity android:name=".ui.booking.businfo.BusInfoActivity" />
+        <activity android:name=".ui.booking.seatinfo.SeatInfoActivity" />
         <activity android:name=".ui.coupon.CouponActivity" />
         <activity android:name=".ui.gameschedule.GameScheduleActivity" />
         <activity android:name=".ui.booking.BookingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".BaseActivity" />
-        <activity android:name=".ui.transfer.TransferActivity" />
+        <activity android:name=".ui.booking.transfer.TransferActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -2,6 +2,7 @@ package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.potatopaloozac.traveldomainproj.R;
@@ -12,6 +13,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +29,8 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
     double city_lat, city_long;
 
     private GoogleMap mMap;
-
+    Polyline polyline;
+    LatLng start, destination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,9 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+
         presenter = new PresenterTransfer(this);
 
         //Log.d("MyTransfer", city_start+ " "+city_destination);
@@ -63,6 +70,16 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         LatLng tranfer = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(tranfer).title("Transfer"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tranfer,4));
+
+        Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
+                .clickable(true)
+                .add(
+                        start,
+                        tranfer,
+                        destination
+
+                        ));
+
     }
 
     @Override
@@ -78,12 +95,12 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
 
         Log.d("MyMap", city_start);
         presenter.getCityInfo(city_start);
-        LatLng start = new LatLng(city_lat, city_long);
+        start = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(start).title("Start"));
 
 
         presenter.getCityInfo(city_destination);
-        LatLng destination = new LatLng(city_lat, city_long);
+        destination = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination,4));
 
