@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bus.BusInfoActivity">
+    tools:context=".ui.booking.businfo.BusInfoActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -167,23 +167,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
             <Button
+                android:id="@+id/bt_bookingChooseSeats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
                 android:textColor="@android:color/white"
-                android:text="@string/bookThis"/>
+                android:text="@string/chooseSeats"/>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button_transfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="25dp"
-            android:layout_marginEnd="50dp"
-            android:text="Transfer" />
 
     </RelativeLayout>
 

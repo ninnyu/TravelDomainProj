@@ -1,15 +1,9 @@
-package com.example.potatopaloozac.traveldomainproj.ui.transfer;
-
-import android.util.Log;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
 import com.example.potatopaloozac.traveldomainproj.data.DataManager;
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager;
-import com.example.potatopaloozac.traveldomainproj.data.database.IDBHelper;
-import com.example.potatopaloozac.traveldomainproj.data.network.INetworkHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTransferListener {

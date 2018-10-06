@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.seat;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo;
 
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
 

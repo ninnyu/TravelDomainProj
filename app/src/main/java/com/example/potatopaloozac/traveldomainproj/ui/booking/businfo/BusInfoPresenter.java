@@ -1,13 +1,10 @@
-package com.example.potatopaloozac.traveldomainproj.ui.bus;
-
-import android.util.Log;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.businfo;
 
 import com.example.potatopaloozac.traveldomainproj.data.DataManager;
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager;
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager.*;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.RouteItem;
-import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 public class BusInfoPresenter implements OnRouteIDListener, OnBusInfoListener, IBusInfoPresenter {
 

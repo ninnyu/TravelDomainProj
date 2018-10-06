@@ -1,8 +1,7 @@
-package com.example.potatopaloozac.traveldomainproj.ui.transfer;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.potatopaloozac.traveldomainproj.R;
@@ -14,9 +13,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class TransferActivity extends AppCompatActivity implements IViewTransfer, OnMapReadyCallback {
