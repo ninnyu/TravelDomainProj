@@ -1,13 +1,16 @@
 package com.example.potatopaloozac.traveldomainproj.ui.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.potatopaloozac.traveldomainproj.R;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,18 +21,29 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivityTAG";
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     static final int RC_SIGN_IN = 123;
 
     private static final String EMAIL = "email";
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
@@ -71,6 +85,23 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
                 Toast.makeText(this, "Not Booooooooooooooooop", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @OnClick({R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    public void onViewClicked(View view) {
+        Intent i;
+        switch (view.getId()) {
+            case R.id.bt_home:
+                break;
+            case R.id.bt_search:
+                i = new Intent(this, BookingActivity.class);
+                startActivity(i);
+                break;
+            case R.id.bt_schedule:
+                break;
+            case R.id.bt_trips:
+                break;
         }
     }
 
