@@ -37,6 +37,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
     private int seatCount;
     private int total;
     private String time;
+    private String paymentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +49,19 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         seatCount = getIntent().getIntExtra("seatcount", 0);
         total = getIntent().getIntExtra("total", 0);
         time = getIntent().getStringExtra("time");
+        paymentID = getIntent().getStringExtra("paymentid");
 
-        String s = "Bus ID: " + businformationItem.getBusid() +
+        String s = "Confirmation Number: \n\t\t\t" + paymentID +
                 "\nTicket Booked On: \t" + time +
-                "\nDeparture: \t\t\t\t" + businformationItem.getBusdeparturetime() +
-                "\nArrival: \t\t\t\t" + businformationItem.getDropingtime() +
-                "\nTotal Amount of Passengers: \t" + seatCount +
-                "\nTotal Fare: \t\t\t\t" + total;
+                "\nBus ID: \t\t\t\t\t\t\t\t\t\t\t\t\t" + businformationItem.getBusid() +
+                "\nDeparture: \t\t\t\t\t\t\t\t\t\t" + businformationItem.getBusdeparturetime() +
+                "\nArrival: \t\t\t\t\t\t\t\t\t\t\t\t\t" + businformationItem.getDropingtime() +
+                "\nTotal Passengers: \t\t\t" + seatCount +
+                "\nTotal Fare: \t\t\t\t\t\t\t\t\t\t" + total;
 
         tvConfirmationSummary.setText(s);
 
-        String s2 = MySharedPreference.readString(MySharedPreference.USER_ID, "") + businformationItem.getBusid();
+        String s2 = MySharedPreference.readString(MySharedPreference.USER_ID, "") + businformationItem.getBusid() + paymentID;
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 

@@ -129,6 +129,7 @@
             android:id="@+id/bt_paymentConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onBuyPress"
             android:background="@drawable/background_button"
             android:text="@string/confirmPayment"
             android:textColor="@android:color/white"/>
