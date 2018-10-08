@@ -6,4 +6,5 @@ public interface IViewTransfer {
    void setCityInfo(String city_info);
    void showStartTransRoute(String info);
    void showTransDesRoute(String info);
+   void setBusInfo(String busInfo);
 }

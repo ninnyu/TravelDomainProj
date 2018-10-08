@@ -43,6 +43,8 @@ public interface IDataManager extends INetworkHelper, IDBHelper {
         void setCityInfo(String city_info);
         void showStartTransRoute(String route_info);
         void showTransDesRoute(String route_info);
+        void showBus(BusinformationItem bus_info);
+
     }
 
 }

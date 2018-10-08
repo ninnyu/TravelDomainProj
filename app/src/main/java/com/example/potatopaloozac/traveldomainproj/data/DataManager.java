@@ -43,6 +43,11 @@ public class DataManager implements IDataManager {
     }
 
     @Override
+    public void getBusInfo(String routeid, OnTransferListener listener) {
+        networkHelper.getBusInfo(routeid, listener);
+    }
+
+    @Override
     public void getSeatInfo(OnSeatInfoListener seatInfoListener) {
         networkHelper.getSeatInfo(seatInfoListener);
     }
