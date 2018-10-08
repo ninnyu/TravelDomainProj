@@ -6,7 +6,13 @@ import android.content.SharedPreferences;
 
 public class MySharedPreference {
 
-    private static final String BUS_INFO = "BUS_INFO";
+    private static final String APP_SETTINGS = "APP_SETTINGS";
+
+    public static final String USER_NAME = "USER_NAME";
+    public static final String USER_ID = "USER_ID";
+    public static final String USER_EMAIL = "USER_EMAIL";
+
+    public static final String PASSENGER_VALIDATED = "PASSENGER_VALIDATED";
 
     public static final String START_CITY_NAME = "START_CITY_NAME";
     public static final String START_CITY_LAT = "START_CITY_LAT";
@@ -19,9 +25,6 @@ public class MySharedPreference {
     public static final String ROUTE_ID = "ROUTE_ID";
     public static final String BUS_ID = "BUS_ID";
 
-    public static final String BUS_DURATION = "BUS_DURATION";
-    public static final String BUS_DEPARTURE = "BUS_DEPARTURE";
-
     public static final String DEPARTURE_DATE = "DEPARTURE_DATE";
 
     private static SharedPreferences sp;
@@ -32,7 +35,7 @@ public class MySharedPreference {
 
     public static void getSharedPreferences(Context context) {
         if (sp == null)
-            sp = context.getSharedPreferences(BUS_INFO, Context.MODE_PRIVATE);
+            sp = context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
     }
 
     public static String readString(String key, String defValue) {

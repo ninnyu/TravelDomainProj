@@ -3,7 +3,6 @@
     package="com.example.potatopaloozac.traveldomainproj">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -13,32 +12,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".BaseActivity" />
-
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.booking.BookingActivity">
-
-        </activity>
-        <activity android:name=".ui.booking.businfo.BusInfoActivity" />
-        <activity android:name=".ui.booking.transfer.TransferActivity" />
-        <activity android:name=".ui.booking.seatinfo.SeatInfoActivity" />
-        <activity android:name=".ui.booking.payment.PaymentActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.booking.BookingActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.booking.businfo.BusInfoActivity"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.booking.transfer.TransferActivity"/>
+        <activity
+            android:name=".ui.booking.seatinfo.SeatInfoActivity"/>
+        <activity
+            android:name=".ui.booking.passengerdetails.PassengerDetailsActivity"/>
+        <activity android:name=".ui.booking.payment.PaymentActivity" />
+        <activity
+            android:name=".ui.booking.payment.PaymentConfirmationActivity"
+            android:noHistory="true"/>
         <activity android:name=".ui.coupon.CouponActivity" />
-        <activity android:name=".ui.gameschedule.GameScheduleActivity" />
+        <activity
+            android:name=".ui.gameschedule.GameScheduleActivity"
+            android:theme="@style/NoAnimTheme" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
     </application>
 
 </manifest>

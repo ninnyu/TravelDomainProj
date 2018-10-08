@@ -31,6 +31,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
     private GoogleMap mMap;
     Polyline polyline;
     LatLng start, destination;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +51,10 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-
         presenter = new PresenterTransfer(this);
 
         //Log.d("MyTransfer", city_start+ " "+city_destination);
         presenter.findTransfer(city_start, city_destination);
-
-
     }
 
 
@@ -73,13 +70,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
 
         Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
                 .clickable(true)
-                .add(
-                        start,
-                        tranfer,
-                        destination
-
-                        ));
-
+                .add(start, tranfer, destination));
     }
 
     @Override
@@ -98,13 +89,9 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         start = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(start).title("Start"));
 
-
         presenter.getCityInfo(city_destination);
         destination = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination,4));
-
-
-
     }
 }

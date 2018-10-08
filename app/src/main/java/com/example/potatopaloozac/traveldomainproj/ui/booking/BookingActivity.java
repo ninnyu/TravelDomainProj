@@ -15,7 +15,10 @@ import android.widget.Spinner;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
+import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
@@ -34,16 +37,6 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
     Spinner spCityGoingTo;
     @BindView(R.id.cv_departure)
     CalendarView cvDeparture;
-    @BindView(R.id.bt_bookingSearch)
-    Button btBookingSearch;
-    @BindView(R.id.bt_home)
-    Button btHome;
-    @BindView(R.id.bt_search)
-    Button btSearch;
-    @BindView(R.id.bt_schedule)
-    Button btSchedule;
-    @BindView(R.id.bt_trips)
-    Button btTrips;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -72,7 +65,7 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
         });
     }
 
-    @OnClick({R.id.bt_bookingSearch, R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    @OnClick({R.id.bt_bookingSearch, R.id.bt_home, R.id.bt_search, R.id.bt_schedule})
     public void onViewClicked(View view) {
         Intent i;
         switch (view.getId()) {
@@ -92,15 +85,17 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
                 } else {
                     i = new Intent(this, BusInfoActivity.class);
                     startActivity(i);
-                    break;
                 }
+                break;
             case R.id.bt_home:
+                i = new Intent(this, HomeActivity.class);
+                startActivity(i);
                 break;
             case R.id.bt_search:
                 break;
             case R.id.bt_schedule:
-                break;
-            case R.id.bt_trips:
+                i = new Intent(this, GameScheduleActivity.class);
+                startActivity(i);
                 break;
         }
     }

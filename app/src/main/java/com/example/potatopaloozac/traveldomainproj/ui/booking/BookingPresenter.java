@@ -18,7 +18,6 @@ public class BookingPresenter implements IBookingPresenter, IDataManager.OnCityL
     public BookingPresenter(BookingActivity activity) {
         bookingView = activity;
         dataManager = new DataManager(activity);
-        MySharedPreference.getSharedPreferences(activity);
     }
 
     @Override
