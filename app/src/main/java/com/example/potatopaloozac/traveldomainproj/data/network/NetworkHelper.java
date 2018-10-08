@@ -23,6 +23,7 @@ import com.example.potatopaloozac.traveldomainproj.ui.booking.transfer.TransferA
 import com.example.potatopaloozac.traveldomainproj.utils.ApiService;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 import com.example.potatopaloozac.traveldomainproj.utils.RetrofitInstance;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -149,6 +150,54 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
+    public void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer, final IDataManager.OnTransferListener listener) {
+
+        double start_lat = city_start.latitude;
+        double start_long = city_start.longitude;
+        double des_lat = city_destination.latitude;
+        double des_long = city_destination.longitude;
+        double transfer_lat = city_transfer.latitude;
+        double transfer_long = city_transfer.longitude;
+
+        Call<Route> routeCall = apiService.getRoute(start_lat, start_long, transfer_lat, transfer_long);
+        routeCall.enqueue(new Callback<Route>() {
+
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+
+                if (response.body().getRoute() != null) {
+
+                    routeItem = response.body().getRoute().get(0);
+                    listener.showStartTransRoute(routeItem.getId());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+
+            }
+        } );
+
+        routeCall = apiService.getRoute(transfer_lat, transfer_long, des_lat, des_long);
+        routeCall.enqueue(new Callback<Route>() {
+
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+                if (response.body().getRoute() != null) {
+                    routeItem = response.body().getRoute().get(0);
+                    listener.showStartTransRoute(routeItem.getId());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+
+            }
+        } );
+
+    }
+
+    @Override
     public void getBusInfo(final IDataManager.OnBusInfoListener busInfoListener) {
 
         int routeID = MySharedPreference.readInt(MySharedPreference.ROUTE_ID, 0);
@@ -170,6 +219,29 @@ public class NetworkHelper implements INetworkHelper {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void getBusInfo(String routeid, final IDataManager.OnTransferListener listener) {
+
+        int routeID = Integer.parseInt(routeid);
+        Call<BusInformation> busCall = apiService.getBusInfo(routeID);
+        busCall.enqueue(new Callback<BusInformation>() {
+            @Override
+            public void onResponse(Call<BusInformation> call, Response<BusInformation> response) {
+                Log.d("MyBusInfo", response.body().toString());
+                //String busInfo = response.body().toString();
+                //listener.showStartTransBus(busInfo);
+                BusinformationItem item = response.body().getBusinformation().get(0);
+                listener.showBus(item);
+            }
+
+            @Override
+            public void onFailure(Call<BusInformation> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override

@@ -1,7 +1,11 @@
 package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
+import android.util.Log;
+
 import com.example.potatopaloozac.traveldomainproj.data.DataManager;
 import com.example.potatopaloozac.traveldomainproj.data.IDataManager;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +32,16 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     @Override
     public void getCityInfo(String city_nm) {
         manager.getCityInfo(city_nm, this);
+    }
+
+    @Override
+    public void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer) {
+        manager.getRouteInfo(city_start, city_destination, city_transfer, this);
+    }
+
+    @Override
+    public void getBusInfo(String routeid) {
+
     }
 
     @Override
@@ -75,6 +89,31 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     public void setCityInfo(String city_info) {
         view.setCityInfo(city_info);
     }
+
+    @Override
+    public void showStartTransRoute(String route_info) {
+        //view.showStartTransRoute(route_info);
+        manager.getBusInfo(route_info,this);
+    }
+
+    @Override
+    public void showTransDesRoute(String route_info) {
+        //view.showTransDesRoute(route_info);
+        manager.getBusInfo(route_info,this);
+    }
+
+    @Override
+    public void showBus(BusinformationItem bus_info) {
+        Log.d("MyPresenter", bus_info.toString());
+        String msg= "Registration Number: "+bus_info.getBusregistrationno()+"\n"
+                   +"Bus Type: "+ bus_info.getBustype()+"\n"
+                   +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
+                   +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
+                   + "Droping Time: "+ bus_info.getDropingtime();
+        view.setBusInfo(msg);
+    }
+
+
 
 
 }
