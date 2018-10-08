@@ -7,6 +7,7 @@ import com.example.potatopaloozac.traveldomainproj.data.database.IDBHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.INetworkHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.NetworkHelper;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class DataManager implements IDataManager {
     @Override
     public void getRouteInfo(OnRouteIDListener routeIDListener) {
         networkHelper.getRouteInfo(routeIDListener);
+    }
+
+    @Override
+    public void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer, OnTransferListener listener) {
+        networkHelper.getRouteInfo(city_start, city_destination, city_transfer, listener);
     }
 
     @Override

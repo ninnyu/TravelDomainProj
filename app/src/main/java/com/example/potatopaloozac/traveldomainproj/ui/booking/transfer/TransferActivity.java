@@ -30,7 +30,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
 
     private GoogleMap mMap;
     Polyline polyline;
-    LatLng start, destination;
+    LatLng start, destination, transfer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +67,18 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         textView_transfer_destination.setText("From: "+ city_nm+" to: "+ city_destination);
 
         presenter.getCityInfo(city_nm);
-        LatLng tranfer = new LatLng(city_lat, city_long);
-        mMap.addMarker(new MarkerOptions().position(tranfer).title("Transfer"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tranfer,4));
+        transfer = new LatLng(city_lat, city_long);
+
+        presenter.getRouteInfo(start,destination, transfer);
+
+        mMap.addMarker(new MarkerOptions().position(transfer).title("Transfer"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(transfer,4));
 
         Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(
                         start,
-                        tranfer,
+                        transfer,
                         destination
 
                         ));
@@ -87,6 +90,16 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         String[] city_info_split = city_info.split(" ");
         city_lat = Double.parseDouble(city_info_split[0]);
         city_long = Double.parseDouble(city_info_split[1]);
+    }
+
+    @Override
+    public void showStartTransRoute(String info) {
+        Log.d("MyRouteInfo", info);
+    }
+
+    @Override
+    public void showTransDesRoute(String info) {
+        Log.d("MyRouteInfo", info);
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.example.potatopaloozac.traveldomainproj.ui.booking.transfer.TransferA
 import com.example.potatopaloozac.traveldomainproj.utils.ApiService;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 import com.example.potatopaloozac.traveldomainproj.utils.RetrofitInstance;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -146,6 +147,54 @@ public class NetworkHelper implements INetworkHelper {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer, final IDataManager.OnTransferListener listener) {
+
+        double start_lat = city_start.latitude;
+        double start_long = city_start.longitude;
+        double des_lat = city_destination.latitude;
+        double des_long = city_destination.longitude;
+        double transfer_lat = city_transfer.latitude;
+        double transfer_long = city_transfer.longitude;
+
+        Call<Route> routeCall = apiService.getRoute(start_lat, start_long, transfer_lat, transfer_long);
+        routeCall.enqueue(new Callback<Route>() {
+
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+                Log.d("MyRouteInfo", "Response");
+                if (response.body().getRoute() != null) {
+                    Log.d("MyRouteInfo", "Success");
+                    String route_info = response.body().getRoute().toString();
+                    listener.showStartTransRoute(route_info);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+
+            }
+        } );
+
+        routeCall = apiService.getRoute(transfer_lat, transfer_long, des_lat, des_long);
+        routeCall.enqueue(new Callback<Route>() {
+
+            @Override
+            public void onResponse(Call<Route> call, Response<Route> response) {
+                if (response.body().getRoute() != null) {
+                    String route_info = response.body().getRoute().toString();
+                    listener.showTransDesRoute(route_info);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Route> call, Throwable t) {
+
+            }
+        } );
+
     }
 
     @Override

@@ -4,4 +4,6 @@ public interface IViewTransfer {
 
    void showTransfer(String city_nm);
    void setCityInfo(String city_info);
+   void showStartTransRoute(String info);
+   void showTransDesRoute(String info);
 }
