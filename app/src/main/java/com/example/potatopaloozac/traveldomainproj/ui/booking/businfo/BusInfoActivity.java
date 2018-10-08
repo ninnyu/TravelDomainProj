@@ -13,12 +13,18 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.Businforma
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BusInfoActivity extends BaseActivity implements IBusInfoView {
+public class BusInfoActivity extends BaseActivity implements IBusInfoView, OnMapReadyCallback {
 
     @BindView(R.id.tv_busInfo_leavingFrom)
     TextView tvBusInfoLeavingFrom;
@@ -48,10 +54,10 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
     Button btBookingChooseSeats;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
+    LatLng start, destination;
     private IBusInfoPresenter busInfoPresenter;
     private BusinformationItem businformationItem;
-
+    private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,11 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
 
         busInfoPresenter = new BusInfoPresenter(this);
         busInfoPresenter.onActivityCreated();
@@ -105,5 +116,27 @@ public class BusInfoActivity extends BaseActivity implements IBusInfoView {
                 startActivity(i);
                 break;
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        mMap = googleMap;
+
+        String start_lat = MySharedPreference.readString(MySharedPreference.START_CITY_LAT, "");
+        String start_long = MySharedPreference.readString(MySharedPreference.START_CITY_LONG, "");
+        String des_lat = MySharedPreference.readString(MySharedPreference.END_CITY_LAT, "");
+        String des_long = MySharedPreference.readString(MySharedPreference.END_CITY_LONG, "");
+        start = new LatLng(Double.parseDouble(start_lat), Double.parseDouble(start_long));
+        destination = new LatLng(Double.parseDouble(des_lat), Double.parseDouble(des_long));
+
+        double mid_lat = (Double.parseDouble(start_lat) + Double.parseDouble(des_lat))/2;
+        double mid_long = (Double.parseDouble(start_long) + Double.parseDouble(des_long))/2;
+        LatLng mid = new LatLng(mid_lat, mid_long);
+
+        mMap.addMarker(new MarkerOptions().position(start).title("Start"));
+        mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mid,4));
+
     }
 }
