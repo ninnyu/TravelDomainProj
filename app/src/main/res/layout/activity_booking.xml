@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:background="@drawable/button_background"
+                android:background="@drawable/background_button"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:text="@string/search"/>

@@ -1,24 +1,26 @@
 package com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.potatopaloozac.traveldomainproj.BaseActivity;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.booking.payment.PaymentActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,21 +29,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
+public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView {
 
     private static final String TAG = "SeatInfoActivityTAG";
 
-    @BindView(R.id.bt_schedule)
-    Button btSchedule;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    private TextView tv_seatInfo;
     private ISeatInfoPresenter seatInfoPresenter;
     private List<BusSeat> mylist;
     private RecyclerView recyclerView_seat;
     private BusSeatAdapter myAdapter;
     private static int columns = 5;
+    private int seatCount = 0;
+    private BusinformationItem businformationItem;
+
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,9 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
         setContentView(R.layout.activity_seat_info);
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
+        activity = this;
+
+        businformationItem = getIntent().getParcelableExtra("businfo");
 
         seatInfoPresenter = new SeatInfoPresenter(this);
         seatInfoPresenter.onActivityCreated();
@@ -63,8 +65,12 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
             public void onitemclick(BusSeat busSeat) {
                 if (busSeat.getType() == 0) {
                     busSeat.setType(2);
+                    seatCount++;
+                    Log.d(TAG, "onitemclick: " + seatCount);
                 } else if (busSeat.getType() == 2) {
                     busSeat.setType(0);
+                    seatCount--;
+                    Log.d(TAG, "onitemclick: " + seatCount);
                 }
                 myAdapter.notifyDataSetChanged();
             }
@@ -73,7 +79,6 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
         GridLayoutManager manager = new GridLayoutManager(this, columns);
         recyclerView_seat.setLayoutManager(manager);
         recyclerView_seat.setAdapter(myAdapter);
-
     }
 
     @Override
@@ -104,28 +109,14 @@ public class SeatInfoActivity extends BaseActivity implements ISeatInfoView {
         }
     }
 
-    @OnClick({R.id.bt_bookSeats, R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    @OnClick({R.id.bt_bookSeats})
     public void onViewClicked(View view) {
-        Intent i;
-        switch (view.getId()) {
-            case R.id.bt_bookSeats:
-                i = new Intent(this, PaymentActivity.class);
-                startActivity(i);
-                break;
-            case R.id.bt_home:
-                break;
-            case R.id.bt_search:
-                i = new Intent(this, BookingActivity.class);
-                startActivity(i);
-                break;
-            case R.id.bt_schedule:
-                Bundle b = getIntent().getExtras();
-                i = new Intent(this, GameScheduleActivity.class);
-                i.putExtras(b);
-                startActivity(i);
-                break;
-            case R.id.bt_trips:
-                break;
-        }
+        if (seatCount > 0) {
+            Intent i = new Intent(this, PassengerDetailsActivity.class);
+            i.putExtra("seatcount", seatCount);
+            i.putExtra("businfo", businformationItem);
+            startActivity(i);
+        } else
+            Toast.makeText(this, "No seat selected", Toast.LENGTH_SHORT).show();
     }
 }

@@ -12,6 +12,8 @@ import android.widget.Button;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameSchedule;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameScheduleAdapter;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 
 import java.util.ArrayList;
@@ -25,14 +27,6 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
 
     private static final String TAG = "GameScheduleActivityTAG";
 
-    @BindView(R.id.bt_home)
-    Button btHome;
-    @BindView(R.id.bt_search)
-    Button btSearch;
-    @BindView(R.id.bt_schedule)
-    Button btSchedule;
-    @BindView(R.id.bt_trips)
-    Button btTrips;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -63,10 +57,10 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         recyclerView_game.setLayoutManager(manager);
         recyclerView_game.setAdapter(adapter);
 
-        Bundle b = getIntent().getExtras();
-        String bus_departure = b.getString("bus_departure");
-        String[] s = (b.getString("bus_duration")).split("Hrs");
-        String bus_duration = s[0] + ":00:00 Hrs";
+        /*BusinformationItem businformationItem = getIntent().getParcelableExtra("businfo");
+        String[] s = (businformationItem.getJournyduration().split("Hrs"));
+        String bus_departure = businformationItem.getBusdeparturetime();
+        String bus_duration = s[0] + ":00:00 Hrs";*/
 
         /**{
          "Businformation":
@@ -82,7 +76,7 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
          ]}
          */
 
-        presenter.findGame(bus_departure, bus_duration);
+        presenter.findGame("12:00:00 AM", "12:00:00 Hrs");
     }
 
 
@@ -93,19 +87,19 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         adapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.bt_home, R.id.bt_search, R.id.bt_schedule, R.id.bt_trips})
+    @OnClick({R.id.bt_home, R.id.bt_search, R.id.bt_schedule})
     public void onViewClicked(View view) {
         Intent i;
         switch (view.getId()) {
             case R.id.bt_home:
+                i = new Intent(this, HomeActivity.class);
+                startActivity(i);
                 break;
             case R.id.bt_search:
                 i = new Intent(this, BookingActivity.class);
                 startActivity(i);
                 break;
             case R.id.bt_schedule:
-                break;
-            case R.id.bt_trips:
                 break;
         }
     }

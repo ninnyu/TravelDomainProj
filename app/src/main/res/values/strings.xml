@@ -20,6 +20,7 @@
     <string name="arrival">Arrival:</string>
     <string name="farePerPerson">Fare Per Person:</string>
     <string name="chooseSeats">Choose Seats For This Bus</string>
+    <string name="transferChooseSeats">Choose Seats These Buses</string>
     <string name="ok">Ok</string>
     <string name="bookSeats">Book Seats</string>
     <string name="chooseSeatDesc">
@@ -28,6 +29,18 @@
     <string name="seatAvailable">Available\nSeat</string>
     <string name="seatUnavailable">Unavailable\nSeat</string>
     <string name="seatSelected">Selected\nSeat</string>
+    <string name="passengerDetails">PASSENGER DETAILS</string>
+    <string name="fname">First Name (Required)</string>
+    <string name="lname">Last Name (Required)</string>
+    <string name="dob">Date of Birth (Required)</string>
+    <string name="pay">Pay</string>
+    <string name="paymentDetails">PAYMENT DETAILS</string>
+    <string name="passengerNum">Number of Passengers</string>
+    <string name="pricePerPerson">Fare Per Person</string>
+    <string name="total">Your Total</string>
+    <string name="confirmPayment">CONFIRM PAYMENT</string>
+    <string name="confirmation">CONFIRMATION</string>
+    <string name="viewGame">View Game Schedule</string>
 
     <!--ProgressDialog-->
     <string name="loadingDataTitle">
@@ -38,6 +51,12 @@
     </string>
 
     <!--AlertDialog-->
+    <string name="loginUnsuccessfulTitle">
+        Login Unsuccessful
+    </string>
+    <string name="loginUnsuccessfulMessage">
+        Login Unsuccessful. Please try again.
+    </string>
     <string name="cannotLoadDataTitle">
         Failed To Load
     </string>

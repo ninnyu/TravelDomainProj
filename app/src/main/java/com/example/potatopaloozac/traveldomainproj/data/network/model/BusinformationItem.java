@@ -1,8 +1,11 @@
 package com.example.potatopaloozac.traveldomainproj.data.network.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class BusinformationItem{
+public class BusinformationItem implements Parcelable {
 
 	@SerializedName("busid")
 	private String busid;
@@ -27,6 +30,29 @@ public class BusinformationItem{
 
 	@SerializedName("dropingtime")
 	private String dropingtime;
+
+	protected BusinformationItem(Parcel in) {
+		busid = in.readString();
+		fare = in.readString();
+		busregistrationno = in.readString();
+		journyduration = in.readString();
+		boardingtime = in.readString();
+		bustype = in.readString();
+		busdeparturetime = in.readString();
+		dropingtime = in.readString();
+	}
+
+	public static final Creator<BusinformationItem> CREATOR = new Creator<BusinformationItem>() {
+		@Override
+		public BusinformationItem createFromParcel(Parcel in) {
+			return new BusinformationItem(in);
+		}
+
+		@Override
+		public BusinformationItem[] newArray(int size) {
+			return new BusinformationItem[size];
+		}
+	};
 
 	public void setBusid(String busid){
 		this.busid = busid;
@@ -106,4 +132,21 @@ public class BusinformationItem{
 			",dropingtime = '" + dropingtime + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(busid);
+		dest.writeString(fare);
+		dest.writeString(busregistrationno);
+		dest.writeString(journyduration);
+		dest.writeString(boardingtime);
+		dest.writeString(bustype);
+		dest.writeString(busdeparturetime);
+		dest.writeString(dropingtime);
+	}
 }

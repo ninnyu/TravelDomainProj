@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:background="@android:color/white">
+    android:background="@drawable/border">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/bt_home"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/home_blue_24dp"/>
+            android:background="@drawable/ic_toolbar_home_blue_24dp"/>
         <Space
             android:layout_width="70dp"
             android:layout_height="20dp" />
@@ -26,7 +26,7 @@
             android:id="@+id/bt_search"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/bus_blue_24dp"/>
+            android:background="@drawable/ic_toolbar_bus_blue_24dp"/>
         <Space
             android:layout_width="70dp"
             android:layout_height="20dp" />
@@ -34,18 +34,18 @@
             android:id="@+id/bt_schedule"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/schedule_blue_24dp"/>
-        <Space
+            android:background="@drawable/ic_toolbar_schedule_blue_24dp"/>
+        <!--<Space
             android:layout_width="70dp"
             android:layout_height="20dp" />
         <Button
             android:id="@+id/bt_trips"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/trip_info_blue_24dp"/>
+            android:background="@drawable/ic_toolbar_map_blue_24dp"/>
         <Space
             android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp" />-->
     </LinearLayout>
 
 </android.support.v7.widget.Toolbar>

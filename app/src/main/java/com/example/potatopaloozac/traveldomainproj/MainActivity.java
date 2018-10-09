@@ -1,7 +1,11 @@
 package com.example.potatopaloozac.traveldomainproj;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -20,59 +24,47 @@ import com.anychart.charts.CircularGauge;
 import com.anychart.charts.Pie;
 import com.anychart.charts.TagCloud;
 import com.anychart.core.gauge.pointers.Bar;
+import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivityTAG";
 
-    private AnyChartView anyChartView;
+    TextView textView;
+    Button button;
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        anyChartView = findViewById(R.id.anyChartView);
+        textView = findViewById(R.id.tv_techsUsed);
+        button = findViewById(R.id.bt_startDemo);
 
-        List<DataEntry> dataEntryList = new ArrayList<>();
+        String s = "- Retrofit2\n" +
+                "- RxJava (validation)\n" +
+                "- RecyclerView with CardView\n" +
+                "- ProgressDialog\n" +
+                "- AlertDialog\n" +
+                "- Google Maps\n" +
+                "- AnyChart\n" +
+                "- SQLite Database\n" +
+                "- MVP Design Pattern\n" +
+                "- Shared Preferences\n" +
+                "- Single Sign-On using Firebase\n" +
+                "";
 
-        dataEntryList.add(new ValueDataEntry("Atlanta", 51000));
-        dataEntryList.add(new ValueDataEntry("Philadelphia", 43000));
+        textView.setText(s);
 
-        dataEntryList.add(new ValueDataEntry("New York City", 33000));
-        dataEntryList.add(new ValueDataEntry("Dallas", 25000));
-
-        dataEntryList.add(new ValueDataEntry("Washington", 20000));
-
-        dataEntryList.add(new ValueDataEntry("Denver", 14000));
-        dataEntryList.add(new ValueDataEntry("st Charles", 25));
-        //st charles, 25000
-        //new york city, 33 million
-        //dallas, 25 million
-        //atlanta, 51 million
-        //washington, 20 million
-        //Philadelphia, 43 million
-        //Denver, 14 million
-
-
-//        Cartesian cartesian = AnyChart.cartesian();
-//        cartesian.data(dataEntryList);
-//        anyChartView.setChart(cartesian);
-
-//        Pie pie = AnyChart.pie();
-//        pie.data(dataEntryList);
-//        anyChartView.setChart(pie);
-
-        Cartesian bar = AnyChart.bar();
-        bar.data(dataEntryList);
-        bar.title().enabled();
-        bar.title("Most Popular Destinations");
-
-        anyChartView.setChart(bar);
-
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

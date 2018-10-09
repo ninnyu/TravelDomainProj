@@ -5,25 +5,25 @@
     <item
         android:id="@+id/menu_home"
         android:title="Home"
-        android:icon="@drawable/home_blue_24dp"
+        android:icon="@drawable/ic_toolbar_home_blue_24dp"
         android:orderInCategory="1"
         app:showAsAction="always"/>
     <item
         android:id="@+id/menu_search"
         android:title="Search"
-        android:icon="@drawable/bus_blue_24dp"
+        android:icon="@drawable/ic_toolbar_bus_blue_24dp"
         android:orderInCategory="2"
         app:showAsAction="always"/>
     <item
         android:id="@+id/menu_tripInfo"
         android:title="Trip Information"
-        android:icon="@drawable/schedule_blue_24dp"
+        android:icon="@drawable/ic_toolbar_schedule_blue_24dp"
         android:orderInCategory="3"
         app:showAsAction="always"/>
     <item
         android:id="@+id/menu_map"
         android:title="Map"
-        android:icon="@drawable/trip_info_blue_24dp"
+        android:icon="@drawable/ic_toolbar_map_blue_24dp"
         android:orderInCategory="4"
         app:showAsAction="always"/>
 </menu>

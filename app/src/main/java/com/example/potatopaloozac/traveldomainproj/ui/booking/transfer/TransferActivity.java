@@ -54,14 +54,10 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-
         presenter = new PresenterTransfer(this);
 
         //Log.d("MyTransfer", city_start+ " "+city_destination);
         presenter.findTransfer(city_start, city_destination);
-
-
     }
 
 
@@ -73,8 +69,8 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         //String msg =  "From: "+ city_start+" to: "+ city_nm + "\n"
         //            + "From: "+ city_nm+" to: "+ city_destination + "\n";
 
-        msg_list.add( "From: "+ city_start+" to: "+ city_nm );
-        msg_list.add("From: "+ city_nm+" to: "+ city_destination);
+        msg_list.add( "From: "+ city_start+"     To: "+ city_nm );
+        msg_list.add("From: "+ city_nm+"     To: "+ city_destination);
 
         //textView_start_transfer.setText(msg_array[idx]);
 
@@ -117,7 +113,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
     @Override
     public void setBusInfo(String busInfo) {
         String msg = textView_start_transfer.getText().toString();
-        textView_start_transfer.setText(msg+"\n"+ msg_list.get(idx)+"\n"+ "Bus Information: "+"\n"+busInfo+"\n");
+        textView_start_transfer.setText(msg+"\n"+ msg_list.get(idx)+"\n"+busInfo+"\n");
         idx++;
         Log.d("MyInfo", msg+"\n"+busInfo);
     }
@@ -131,13 +127,9 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         start = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(start).title("Start"));
 
-
         presenter.getCityInfo(city_destination);
         destination = new LatLng(city_lat, city_long);
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination,4));
-
-
-
     }
 }
