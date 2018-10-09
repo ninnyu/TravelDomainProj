@@ -9,12 +9,18 @@ import android.util.Log
 import android.view.View
 import com.example.potatopaloozac.traveldomainproj.R
 import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo
+import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity
+import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity
+import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity
+import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo2.SeatInfo2Activity
+import com.example.potatopaloozac.traveldomainproj.ui.booking.transfer.TransferActivity
 import com.paypal.android.sdk.payments.*
 import com.paypal.android.sdk.payments.PaymentActivity
 import kotlinx.android.synthetic.main.activity_payment.*
 import org.json.JSONException
 import java.math.BigDecimal
 import java.sql.Timestamp
+import kotlin.math.log
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -25,8 +31,14 @@ class PaymentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_payment)
 
         paymentInfo = intent.getParcelableExtra("paymentinfo")
-        paymentInfo.total = paymentInfo.businfo1.fare.toInt() * paymentInfo.seatCount_bus1 +
-                paymentInfo.businfo2.fare.toInt() * paymentInfo.seatCount_bus2
+
+        if (paymentInfo.businfo2 != null) {
+            paymentInfo.total = paymentInfo.businfo1.fare.toInt() * paymentInfo.seatCount_bus1 +
+                    paymentInfo.businfo2.fare.toInt() * paymentInfo.seatCount_bus2
+        } else {
+            paymentInfo.total = paymentInfo.businfo1.fare.toInt() * paymentInfo.seatCount_bus1
+        }
+
         var totalSeats = paymentInfo.seatCount_bus1 + paymentInfo.seatCount_bus2
 
         var start = paymentInfo.startCity.cityname + "\n" + paymentInfo.businfo1.busdeparturetime
@@ -59,6 +71,17 @@ class PaymentActivity : AppCompatActivity() {
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config)
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy)
         startActivityForResult(intent, REQUEST_CODE_PAYMENT)
+
+        if (BusInfoActivity.activity != null)
+            BusInfoActivity.activity.finish()
+        if (TransferActivity.activity != null)
+            TransferActivity.activity.finish()
+        if (SeatInfo2Activity.activity != null)
+            SeatInfo2Activity.activity.finish()
+        if (SeatInfoActivity.activity != null)
+            SeatInfoActivity.activity.finish()
+        if (PassengerDetailsActivity.activity != null)
+            PassengerDetailsActivity.activity.finish()
     }
 
     private fun getThingToBuy(paymenT_INTENT_SALE: String): PayPalPayment {

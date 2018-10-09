@@ -56,7 +56,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
     @BindView(R.id.iv_confirmationQR)
     ImageView ivConfirmationQR;
 
-    private PaymentInfo paymentInfo;    //TODO
+    private PaymentInfo paymentInfo;
     private File file;
     private Drawable drawable;
 
@@ -102,7 +102,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         try {
             Message m = buildMessage(
                     createSessionObject(),
-                    /*TODO add email*/,
+                    /*TODO email*/,
                     MySharedPreference.readString(MySharedPreference.USER_EMAIL, ""),
                     "Roat Trip Bus Ticket Confirmation",
                     "Here is the confirmation for your bus ticket reservation made on Road Trip!\n",
@@ -175,7 +175,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(/*TODO add email username and password*/);
+                return new PasswordAuthentication(/*TODO email*/);
             }
         });
     }

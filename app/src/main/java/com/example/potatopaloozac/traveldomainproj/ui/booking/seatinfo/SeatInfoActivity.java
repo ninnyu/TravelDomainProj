@@ -22,6 +22,7 @@ import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
+import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +107,11 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
     public void onViewClicked(View view) {
         if (seatCount > 0) {
             PaymentInfo paymentInfo = getIntent().getParcelableExtra("paymentinfo");
-            paymentInfo.setSeatCount_bus2(seatCount);
+
+            if (MySharedPreference.readBoolean(MySharedPreference.SEATSELECTED_BUS1, false))
+                paymentInfo.setSeatCount_bus2(seatCount);
+            else
+                paymentInfo.setSeatCount_bus1(seatCount);
 
             Intent i = new Intent(this, PassengerDetailsActivity.class);
             i.putExtra("paymentinfo", paymentInfo);

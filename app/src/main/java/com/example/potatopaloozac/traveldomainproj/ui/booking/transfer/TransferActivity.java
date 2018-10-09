@@ -1,5 +1,6 @@
 package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -83,11 +84,15 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
     int idx = 0;
     List<String> msg_list;
 
+    public static Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
         ButterKnife.bind(this);
+
+        activity = this;
 
         paymentInfo = getIntent().getParcelableExtra("paymentinfo");
 
