@@ -93,27 +93,36 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     @Override
     public void showStartTransRoute(String route_info) {
         //view.showStartTransRoute(route_info);
-        manager.getBusInfo(route_info,this);
+        manager.getBusInfoStartTrans(route_info,this);
     }
 
     @Override
     public void showTransDesRoute(String route_info) {
         //view.showTransDesRoute(route_info);
-        manager.getBusInfo(route_info,this);
+        //manager.getBusInfo(route_info,this);
+        manager.getBusInfoTransDes(route_info, this);
     }
 
     @Override
-    public void showBus(BusinformationItem bus_info) {
+    public void showBusStartTrans(BusinformationItem bus_info) {
         Log.d("MyPresenter", bus_info.toString());
         String msg= "Registration Number: "+bus_info.getBusregistrationno()+"\n"
                    +"Bus Type: "+ bus_info.getBustype()+"\n"
                    +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
                    +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
                    + "Droping Time: "+ bus_info.getDropingtime();
-        view.setBusInfo(msg);
+        view.setBusInfoStartTrans(msg);
     }
 
-
+    @Override
+    public void showBusTransDes(BusinformationItem bus_info) {
+        String msg= "Registration Number: "+bus_info.getBusregistrationno()+"\n"
+                +"Bus Type: "+ bus_info.getBustype()+"\n"
+                +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
+                +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
+                + "Droping Time: "+ bus_info.getDropingtime();
+        view.setBusInfoTransDes(msg);
+    }
 
 
 }

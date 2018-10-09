@@ -185,7 +185,7 @@ public class NetworkHelper implements INetworkHelper {
             public void onResponse(Call<Route> call, Response<Route> response) {
                 if (response.body().getRoute() != null) {
                     routeItem = response.body().getRoute().get(0);
-                    listener.showStartTransRoute(routeItem.getId());
+                    listener.showTransDesRoute(routeItem.getId());
                 }
             }
 
@@ -222,7 +222,7 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
-    public void getBusInfo(String routeid, final IDataManager.OnTransferListener listener) {
+    public void getBusInfoStartTrans(String routeid, final IDataManager.OnTransferListener listener) {
 
         int routeID = Integer.parseInt(routeid);
         Call<BusInformation> busCall = apiService.getBusInfo(routeID);
@@ -233,7 +233,7 @@ public class NetworkHelper implements INetworkHelper {
                 //String busInfo = response.body().toString();
                 //listener.showStartTransBus(busInfo);
                 BusinformationItem item = response.body().getBusinformation().get(0);
-                listener.showBus(item);
+                listener.showBusStartTrans(item);
             }
 
             @Override
@@ -242,6 +242,27 @@ public class NetworkHelper implements INetworkHelper {
             }
         });
 
+    }
+
+    @Override
+    public void getBusInfoTransDes(String routeid, final IDataManager.OnTransferListener listener) {
+        int routeID = Integer.parseInt(routeid);
+        Call<BusInformation> busCall = apiService.getBusInfo(routeID);
+        busCall.enqueue(new Callback<BusInformation>() {
+            @Override
+            public void onResponse(Call<BusInformation> call, Response<BusInformation> response) {
+                Log.d("MyBusInfo", response.body().toString());
+                //String busInfo = response.body().toString();
+                //listener.showStartTransBus(busInfo);
+                BusinformationItem item = response.body().getBusinformation().get(0);
+                listener.showBusTransDes(item);
+            }
+
+            @Override
+            public void onFailure(Call<BusInformation> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
