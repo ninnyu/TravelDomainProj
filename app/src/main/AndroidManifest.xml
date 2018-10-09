@@ -36,6 +36,7 @@
             android:theme="@style/NoAnimTheme" />
         <activity android:name=".ui.booking.transfer.TransferActivity" />
         <activity android:name=".ui.booking.seatinfo.SeatInfoActivity" />
+        <activity android:name=".ui.booking.seatinfo2.SeatInfo2Activity" />
         <activity android:name=".ui.booking.passengerdetails.PassengerDetailsActivity" />
         <activity
             android:name=".ui.booking.payment.PaymentConfirmationActivity"

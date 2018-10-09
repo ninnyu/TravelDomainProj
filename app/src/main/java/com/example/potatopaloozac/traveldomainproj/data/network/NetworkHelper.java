@@ -1,5 +1,6 @@
 package com.example.potatopaloozac.traveldomainproj.data.network;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,6 +16,7 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.City;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.Coupon;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CouponsItem;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.Route;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.RouteItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatInformation;
@@ -44,6 +46,8 @@ public class NetworkHelper implements INetworkHelper {
     private Context context;
     private ApiService apiService;
     private ProgressDialog progressDialog;
+
+    private boolean foundRoute = false;
 
     private boolean flag_start_transfer;
     private boolean flag_transfer_destination;
@@ -122,6 +126,7 @@ public class NetworkHelper implements INetworkHelper {
             public void onResponse(Call<Route> call, Response<Route> response) {
                 Log.d(TAG, "onResponse: " + response.body());
                 if (response.body().getRoute() != null) {
+                    foundRoute = true;
                     routeItem = response.body().getRoute().get(0);
                     MySharedPreference.writeInt(MySharedPreference.ROUTE_ID, Integer.parseInt(routeItem.getId()));
                 } else {
@@ -133,8 +138,11 @@ public class NetworkHelper implements INetworkHelper {
                     alertDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            PaymentInfo paymentInfo = ((Activity) context).getIntent().getParcelableExtra("paymentinfo");
                             Intent i = new Intent(context, TransferActivity.class);
+                            i.putExtra("paymentinfo", paymentInfo);
                             context.startActivity(i);
+                            ((Activity) context).finish();
                         }
                     });
                     alertDialogBuilder.show();
@@ -150,7 +158,10 @@ public class NetworkHelper implements INetworkHelper {
     }
 
     @Override
-    public void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer, final IDataManager.OnTransferListener listener) {
+    public void getRouteInfo(LatLng city_start,
+                             LatLng city_destination,
+                             LatLng city_transfer,
+                             final IDataManager.OnTransferListener listener) {
 
         double start_lat = city_start.latitude;
         double start_long = city_start.longitude;
@@ -200,7 +211,11 @@ public class NetworkHelper implements INetworkHelper {
     @Override
     public void getBusInfo(final IDataManager.OnBusInfoListener busInfoListener) {
 
-        int routeID = MySharedPreference.readInt(MySharedPreference.ROUTE_ID, 0);
+        int routeID = 0;
+
+        if (foundRoute) {
+            routeID = MySharedPreference.readInt(MySharedPreference.ROUTE_ID, 0);
+        }
 
         Call<BusInformation> busCall = apiService.getBusInfo(routeID);
         busCall.enqueue(new Callback<BusInformation>() {
@@ -273,7 +288,15 @@ public class NetworkHelper implements INetworkHelper {
         progressDialog.setMessage(context.getResources().getString(R.string.loadingDataMessage));
         progressDialog.show();
 
-        int busID = MySharedPreference.readInt(MySharedPreference.BUS_ID, 0);
+        int busID = 0;
+
+        PaymentInfo paymentInfo = ((Activity) context).getIntent().getParcelableExtra("paymentinfo");
+
+        if (MySharedPreference.readBoolean(MySharedPreference.SEATSELECTED_BUS1, false)) {
+            busID = Integer.parseInt(paymentInfo.getBusinfo2().getBusid());
+        } else {
+            busID = Integer.parseInt(paymentInfo.getBusinfo1().getBusid());
+        }
 
         Call<SeatInformation> seatCall = apiService.getSeatInfo(busID);
         seatCall.enqueue(new Callback<SeatInformation>() {

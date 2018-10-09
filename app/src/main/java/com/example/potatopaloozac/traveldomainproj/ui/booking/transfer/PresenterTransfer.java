@@ -111,7 +111,7 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
                    +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
                    +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
                    + "Droping Time: "+ bus_info.getDropingtime();
-        view.setBusInfoStartTrans(msg);
+        view.setBusInfoStartTrans(bus_info);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
                 +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
                 +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
                 + "Droping Time: "+ bus_info.getDropingtime();
-        view.setBusInfoTransDes(msg);
+        view.setBusInfoTransDes(bus_info);
     }
 
 

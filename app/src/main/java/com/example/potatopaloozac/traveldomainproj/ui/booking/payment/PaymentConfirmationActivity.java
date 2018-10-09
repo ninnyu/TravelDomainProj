@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
@@ -55,12 +56,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
     @BindView(R.id.iv_confirmationQR)
     ImageView ivConfirmationQR;
 
-    private BusinformationItem businformationItem;
-    private int seatCount;
-    private int total;
-    private String time;
-    private String paymentID;
-
+    private PaymentInfo paymentInfo;    //TODO
     private File file;
     private Drawable drawable;
 
@@ -70,25 +66,24 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_confirmation);
         ButterKnife.bind(this);
 
-        businformationItem = getIntent().getParcelableExtra("businfo");
-        seatCount = getIntent().getIntExtra("seatcount", 0);
-        total = getIntent().getIntExtra("total", 0);
-        time = getIntent().getStringExtra("time");
-        paymentID = getIntent().getStringExtra("paymentid");
+        paymentInfo = getIntent().getParcelableExtra("paymentinfo");
 
         String email = MySharedPreference.readString(MySharedPreference.USER_EMAIL, "");
+        int totalSeats = paymentInfo.getSeatCount_bus1() + paymentInfo.getSeatCount_bus2();
 
-        String s = "Confirmation Number: \n\t\t\t" + paymentID +
-                "\nTicket Booked On: \t" + time +
-                "\nBus ID: \t\t\t\t\t\t\t\t\t\t\t\t\t" + businformationItem.getBusid() +
-                "\nDeparture: \t\t\t\t\t\t\t\t\t\t" + businformationItem.getBusdeparturetime() +
-                "\nArrival: \t\t\t\t\t\t\t\t\t\t\t\t\t" + businformationItem.getDropingtime() +
-                "\nTotal Passengers: \t\t\t" + seatCount +
-                "\nTotal Fare: \t\t\t\t\t\t\t\t\t\t" + total;
+        String s = "Confirmation Number: \n\t\t\t" + paymentInfo.getId() +
+                "\nTicket Booked On: \t" + paymentInfo.getTime() +
+                "\nBus ID: \t\t\t\t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getBusid() +
+                "\nDeparture: \t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getBusdeparturetime() +
+                "\nArrival: \t\t\t\t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getDropingtime() +
+                "\nTotal Passengers: \t\t\t" + totalSeats +
+                "\nTotal Fare: \t\t\t\t\t\t\t\t\t\t" + paymentInfo.getTotal();
 
         tvConfirmationSummary.setText(s);
 
-        String s2 = MySharedPreference.readString(MySharedPreference.USER_ID, "") + businformationItem.getBusid() + paymentID;
+        String s2 = MySharedPreference.readString(MySharedPreference.USER_ID, "")
+                + paymentInfo.getBusinfo1().getBusid()
+                + paymentInfo.getId();
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
@@ -107,7 +102,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         try {
             Message m = buildMessage(
                     createSessionObject(),
-                    /*TODO ENTER EMAIL*/,
+                    /*TODO add email*/,
                     MySharedPreference.readString(MySharedPreference.USER_EMAIL, ""),
                     "Roat Trip Bus Ticket Confirmation",
                     "Here is the confirmation for your bus ticket reservation made on Road Trip!\n",
@@ -121,7 +116,6 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
     @OnClick(R.id.bt_confirmationViewGame)
     public void onViewClicked() {
         Intent i = new Intent(this, GameScheduleActivity.class);
-        i.putExtra("businfo", businformationItem);
         startActivity(i);
     }
 
@@ -181,7 +175,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(/*TODO ENTER EMAIL USERNAME*/,/*TODO ENTER PASSWORD*/);
+                return new PasswordAuthentication(/*TODO add email username and password*/);
             }
         });
     }

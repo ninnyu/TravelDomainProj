@@ -1,4 +1,4 @@
-package com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo;
+package com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,35 +6,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
-import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
-import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
+import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView {
+public class SeatInfo2Activity extends AppCompatActivity implements ISeatInfoView2 {
 
-    private static final String TAG = "SeatInfoActivityTAG";
+    private static final String TAG = "SeatInfo2ActivityTAG";
 
-    private ISeatInfoPresenter seatInfoPresenter;
+    private ISeatInfoPresenter2 seatInfoPresenter;
     private List<BusSeat> mylist;
     private RecyclerView recyclerView_seat;
     private BusSeatAdapter myAdapter;
@@ -46,12 +40,12 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seat_info);
+        setContentView(R.layout.activity_seat_info2);
         ButterKnife.bind(this);
 
         activity = this;
 
-        seatInfoPresenter = new SeatInfoPresenter(this);
+        seatInfoPresenter = new SeatInfoPresenter2(this);
         seatInfoPresenter.onActivityCreated();
 
         recyclerView_seat = findViewById(R.id.recyclerview_seat);
@@ -106,9 +100,9 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
     public void onViewClicked(View view) {
         if (seatCount > 0) {
             PaymentInfo paymentInfo = getIntent().getParcelableExtra("paymentinfo");
-            paymentInfo.setSeatCount_bus2(seatCount);
+            paymentInfo.setSeatCount_bus1(seatCount);
 
-            Intent i = new Intent(this, PassengerDetailsActivity.class);
+            Intent i = new Intent(this, SeatInfoActivity.class);
             i.putExtra("paymentinfo", paymentInfo);
             startActivity(i);
         } else

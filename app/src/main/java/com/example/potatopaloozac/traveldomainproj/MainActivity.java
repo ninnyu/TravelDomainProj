@@ -53,8 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 "- AnyChart\n" +
                 "- SQLite Database\n" +
                 "- MVP Design Pattern\n" +
+                "- Singleton Design Pattern\n" +
                 "- Shared Preferences\n" +
                 "- Single Sign-On using Firebase\n" +
+                "- Parcelable\n" +
+                "- PayPal\n" +
+                "- QRCode\n" +
                 "";
 
         textView.setText(s);

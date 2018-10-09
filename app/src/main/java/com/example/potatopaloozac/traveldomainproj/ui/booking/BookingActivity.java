@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.CityItem;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
@@ -83,7 +85,12 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
                     });
                     alertDialogBuilder.show();
                 } else {
+                    PaymentInfo paymentInfo = new PaymentInfo();
+                    paymentInfo.setStartCity(cityStart);
+                    paymentInfo.setEndCity(cityEnd);
+
                     i = new Intent(this, BusInfoActivity.class);
+                    i.putExtra("paymentinfo", paymentInfo);
                     startActivity(i);
                 }
                 break;

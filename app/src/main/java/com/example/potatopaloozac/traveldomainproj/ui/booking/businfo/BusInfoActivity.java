@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity;
@@ -28,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, OnMapReadyCallback {
+
+    private static final String TAG = "BusInfoActivityTAG";
 
     @BindView(R.id.tv_busInfo_leavingFrom)
     TextView tvBusInfoLeavingFrom;
@@ -47,10 +51,11 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
     TextView tvBusInfoFare;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     LatLng start, destination;
     private IBusInfoPresenter busInfoPresenter;
-    private BusinformationItem businformationItem;
     private GoogleMap mMap;
+    private PaymentInfo paymentInfo;
 
     public static Activity activity;
 
@@ -63,10 +68,11 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
         setSupportActionBar(toolbar);
         activity = this;
 
+        paymentInfo = getIntent().getParcelableExtra("paymentinfo");
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
 
         busInfoPresenter = new BusInfoPresenter(this);
         busInfoPresenter.onActivityCreated();
@@ -74,7 +80,7 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
 
     @Override
     public void showBusDetails(BusinformationItem businformationItem) {
-        this.businformationItem = businformationItem;
+        paymentInfo.setBusinfo1(businformationItem);
 
         String from = MySharedPreference.readString(MySharedPreference.START_CITY_NAME, "");
         String going = MySharedPreference.readString(MySharedPreference.END_CITY_NAME, "");
@@ -108,7 +114,7 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
                 break;
             case R.id.bt_bookingChooseSeats:
                 i = new Intent(this, SeatInfoActivity.class);
-                i.putExtra("businfo", businformationItem);
+                i.putExtra("paymentinfo", paymentInfo);
                 startActivity(i);
                 break;
         }
@@ -123,6 +129,7 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
         String start_long = MySharedPreference.readString(MySharedPreference.START_CITY_LONG, "");
         String des_lat = MySharedPreference.readString(MySharedPreference.END_CITY_LAT, "");
         String des_long = MySharedPreference.readString(MySharedPreference.END_CITY_LONG, "");
+
         start = new LatLng(Double.parseDouble(start_lat), Double.parseDouble(start_long));
         destination = new LatLng(Double.parseDouble(des_lat), Double.parseDouble(des_long));
 
@@ -133,6 +140,5 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
         mMap.addMarker(new MarkerOptions().position(start).title("Start"));
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mid,4));
-
     }
 }

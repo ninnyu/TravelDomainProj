@@ -20,9 +20,12 @@
     <string name="arrival">Arrival:</string>
     <string name="farePerPerson">Fare Per Person:</string>
     <string name="chooseSeats">Choose Seats For This Bus</string>
-    <string name="transferChooseSeats">Choose Seats These Buses</string>
+    <string name="transferBus1">Transfer Bus One</string>
+    <string name="transferBus2">Transfer Bus Two</string>
+    <string name="transferChooseSeats">Choose Seats For These Buses</string>
     <string name="ok">Ok</string>
     <string name="bookSeats">Book Seats</string>
+    <string name="bookSeatsTransfer">Book and Choose Seats For Next Bus</string>
     <string name="chooseSeatDesc">
         Click on the seats that you want to reserve then click the button below to reserve them.
     </string>

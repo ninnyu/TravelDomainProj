@@ -62,20 +62,6 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         String bus_departure = businformationItem.getBusdeparturetime();
         String bus_duration = s[0] + ":00:00 Hrs";*/
 
-        /**{
-         "Businformation":
-         [
-         {"busid
-         ":"102","busregistrationno":"TC102",
-         "bustype":"Sleeper,AC,LCD","
-         busdeparturetime":"09:00:00 PM",
-         "journyduration":"08:00:00 Hrs",
-         "Fare":"700",
-         "boardingtime":"07:15:00 AM",
-         "dropingtime":"04:00:00 AM"}
-         ]}
-         */
-
         presenter.findGame("12:00:00 AM", "12:00:00 Hrs");
     }
 
