@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BusInfoActivity extends AppCompatActivity implements IBusInfoView {
+public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, OnMapReadyCallback {
 
     @BindView(R.id.tv_busInfo_leavingFrom)
     TextView tvBusInfoLeavingFrom;

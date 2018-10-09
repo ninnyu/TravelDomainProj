@@ -107,7 +107,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         try {
             Message m = buildMessage(
                     createSessionObject(),
-                    /*TODO INSERT EMAIL*/,
+                    /*TODO ENTER EMAIL*/,
                     MySharedPreference.readString(MySharedPreference.USER_EMAIL, ""),
                     "Roat Trip Bus Ticket Confirmation",
                     "Here is the confirmation for your bus ticket reservation made on Road Trip!\n",
@@ -181,7 +181,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(/*TODO INSERT EMAIL USERNAME*/, /*TODO INSERT EMAIL PASSWORD*/);
+                return new PasswordAuthentication(/*TODO ENTER EMAIL USERNAME*/,/*TODO ENTER PASSWORD*/);
             }
         });
     }

@@ -47,7 +47,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         textView_t_d1 = findViewById(R.id.textView_trans_des1);
         textView_s_t2 = findViewById(R.id.textView_start_trans2);
         textView_t_d2 = findViewById(R.id.textView_trans_des2);
-        //textView_start_transfer.setText("Sorry, no transfer available");
+        textView_start_transfer.setText("Sorry, no transfer available");
         msg_list = new ArrayList<>();
         map_start_transfer = new HashMap<>();
         map_transfer_destination = new HashMap<>();
