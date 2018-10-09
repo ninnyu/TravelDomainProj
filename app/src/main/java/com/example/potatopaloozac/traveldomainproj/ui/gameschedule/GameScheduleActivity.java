@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameSchedule;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameScheduleAdapter;
-import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 
@@ -29,6 +28,8 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.bt_schedule)
+    Button btSchedule;
 
     private IPresenterGameschedule presenter;
     private List<GameSchedule> mygamelist;
@@ -42,6 +43,7 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        btSchedule.setBackground(getResources().getDrawable(R.drawable.ic_toolbar_schedule_blue_24dp));
 
         presenter = new PresenterGameSchedule(this);
         mygamelist = new ArrayList<>();

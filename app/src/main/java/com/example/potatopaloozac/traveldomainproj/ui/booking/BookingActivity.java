@@ -3,10 +3,10 @@ package com.example.potatopaloozac.traveldomainproj.ui.booking;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +20,6 @@ import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInf
 import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
@@ -41,6 +40,8 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
     CalendarView cvDeparture;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.bt_search)
+    Button btSearch;
 
     private IBookingPresenter bookingPresenter;
     private ArrayList<CityItem> cityList;
@@ -53,13 +54,14 @@ public class BookingActivity extends AppCompatActivity implements IBookingView, 
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        btSearch.setBackground(this.getResources().getDrawable(R.drawable.ic_toolbar_bus_blue_24dp));
 
         bookingPresenter = new BookingPresenter(this);
         bookingPresenter.onActivityCreated();
 
         MySharedPreference.writeString(MySharedPreference.DEPARTURE_DATE, "Today");
 
-        cvDeparture.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+        cvDeparture.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 String s = (month + 1) + "-" + dayOfMonth + "-" + year;
                 MySharedPreference.writeString(MySharedPreference.DEPARTURE_DATE, s);

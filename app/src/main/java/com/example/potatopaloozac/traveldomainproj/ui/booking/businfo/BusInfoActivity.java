@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,6 +52,8 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
     Toolbar toolbar;
 
     LatLng start, destination;
+    @BindView(R.id.bt_search)
+    Button btSearch;
     private IBusInfoPresenter busInfoPresenter;
     private GoogleMap mMap;
     private PaymentInfo paymentInfo;
@@ -66,6 +67,7 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        btSearch.setBackground(getResources().getDrawable(R.drawable.ic_toolbar_bus_blue_24dp));
         activity = this;
 
         paymentInfo = getIntent().getParcelableExtra("paymentinfo");
@@ -133,12 +135,12 @@ public class BusInfoActivity extends AppCompatActivity implements IBusInfoView, 
         start = new LatLng(Double.parseDouble(start_lat), Double.parseDouble(start_long));
         destination = new LatLng(Double.parseDouble(des_lat), Double.parseDouble(des_long));
 
-        double mid_lat = (Double.parseDouble(start_lat) + Double.parseDouble(des_lat))/2;
-        double mid_long = (Double.parseDouble(start_long) + Double.parseDouble(des_long))/2;
+        double mid_lat = (Double.parseDouble(start_lat) + Double.parseDouble(des_lat)) / 2;
+        double mid_long = (Double.parseDouble(start_long) + Double.parseDouble(des_long)) / 2;
         LatLng mid = new LatLng(mid_lat, mid_long);
 
         mMap.addMarker(new MarkerOptions().position(start).title("Start"));
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mid,4));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mid, 4));
     }
 }

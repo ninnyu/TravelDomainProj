@@ -44,6 +44,7 @@
     <string name="confirmPayment">CONFIRM PAYMENT</string>
     <string name="confirmation">CONFIRMATION</string>
     <string name="viewGame">View Game Schedule</string>
+    <string name="coupon">Apply Coupon</string>
 
     <!--ProgressDialog-->
     <string name="loadingDataTitle">

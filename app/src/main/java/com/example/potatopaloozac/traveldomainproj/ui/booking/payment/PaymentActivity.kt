@@ -8,6 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.example.potatopaloozac.traveldomainproj.R
+import com.example.potatopaloozac.traveldomainproj.data.DataManager
+import com.example.potatopaloozac.traveldomainproj.data.IDataManager
+import com.example.potatopaloozac.traveldomainproj.data.network.model.CouponsItem
 import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo
 import com.example.potatopaloozac.traveldomainproj.ui.booking.businfo.BusInfoActivity
 import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_payment.*
 import org.json.JSONException
 import java.math.BigDecimal
 import java.sql.Timestamp
+import java.util.ArrayList
 import kotlin.math.log
 
 class PaymentActivity : AppCompatActivity() {

@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
+import com.anychart.charts.Pie;
 import com.anychart.core.cartesian.series.Column;
 import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.bt_home)
+    Button btHome;
 
     private AnyChartView anyChartView;
 
@@ -43,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        btHome.setBackground(getResources().getDrawable(R.drawable.ic_toolbar_home_blue_24dp));
         anyChartView = findViewById(R.id.anyChartView);
 
         List<DataEntry> dataEntryList = new ArrayList<>();
@@ -53,7 +57,12 @@ public class HomeActivity extends AppCompatActivity {
         dataEntryList.add(new ValueDataEntry("Philadelphia, PA", 41));
         dataEntryList.add(new ValueDataEntry("Washington, DC", 20));
         dataEntryList.add(new ValueDataEntry("Denver, CO", 17.4));
-        dataEntryList.add(new ValueDataEntry("St Charles, IL", 51000/1000000));
+        dataEntryList.add(new ValueDataEntry("St Charles, IL", 51000 / 1000000));
+
+        /*Pie pie = AnyChart.pie();
+        pie.data(dataEntryList);
+        pie.title("Most Popular Destinations");
+        anyChartView.setChart(pie);*/
 
         Cartesian cartesian = AnyChart.cartesian();
         Column column = cartesian.column(dataEntryList);
@@ -77,6 +86,8 @@ public class HomeActivity extends AppCompatActivity {
 
         cartesian.xAxis(0).title("Cities");
         cartesian.yAxis(0).title("Visitors (Millions)");
+
+        cartesian.labels().rotation(90);
 
         anyChartView.setChart(cartesian);
     }

@@ -51,7 +51,8 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".ui.booking.payment.PaymentActivity" />
-        <activity android:name=".ui.orderhistory.OrderHistoryActivity"></activity>
+        <activity android:name=".ui.orderhistory.OrderHistoryActivity" />
+        <activity android:name=".Splash2Activity"></activity>
     </application>
 
 </manifest>
