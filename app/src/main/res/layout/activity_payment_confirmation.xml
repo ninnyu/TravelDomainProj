@@ -31,7 +31,7 @@
             android:background="@drawable/border"/>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="25dp" />
         <ImageView
             android:id="@+id/iv_confirmationQR"
             android:layout_width="150dp"
@@ -39,7 +39,7 @@
             android:layout_gravity="center"/>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="25dp" />
         <Button
             android:id="@+id/bt_confirmationViewGame"
             android:layout_width="match_parent"

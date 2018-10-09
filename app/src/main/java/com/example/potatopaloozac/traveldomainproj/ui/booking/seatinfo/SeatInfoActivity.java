@@ -6,23 +6,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
-import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
-import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.gameschedule.GameScheduleActivity;
-import com.example.potatopaloozac.traveldomainproj.ui.login.LoginActivity;
-import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +29,16 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
 
     private static final String TAG = "SeatInfoActivityTAG";
 
+    @BindView(R.id.tv_seatsSelected)
+    TextView tvSeatsSelected;
+
     private ISeatInfoPresenter seatInfoPresenter;
     private List<BusSeat> mylist;
     private RecyclerView recyclerView_seat;
     private BusSeatAdapter myAdapter;
     private static int columns = 5;
     private int seatCount = 0;
+    private ArrayList<Integer> seatSelectedList;
 
     public static Activity activity;
 
@@ -58,17 +56,38 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
         recyclerView_seat = findViewById(R.id.recyclerview_seat);
 
         mylist = new ArrayList<>();
+        seatSelectedList = new ArrayList<>();
 
         myAdapter = new BusSeatAdapter(mylist, new BusSeatAdapter.SeatOnClickListener() {
             @Override
             public void onitemclick(BusSeat busSeat) {
                 if (busSeat.getType() == 0) {
                     busSeat.setType(2);
+                    seatSelectedList.add(busSeat.getSeatNum());
                     seatCount++;
+
+                    String msg = new String();
+
+                    for(int seatNum: seatSelectedList){
+                        msg = msg + "  " + seatNum;
+                    }
+
+                    tvSeatsSelected.setText(msg);
                     Log.d(TAG, "onitemclick: " + seatCount);
                 } else if (busSeat.getType() == 2) {
                     busSeat.setType(0);
+                    int x = seatSelectedList.indexOf(busSeat.getSeatNum());
+                    seatSelectedList.remove(x);
                     seatCount--;
+
+                    String msg = new String();
+
+                    for(int seatNum: seatSelectedList){
+                        msg = msg + "  "+ seatNum;
+
+                    }
+                    tvSeatsSelected.setText(msg);
+
                     Log.d(TAG, "onitemclick: " + seatCount);
                 }
                 myAdapter.notifyDataSetChanged();
@@ -108,7 +127,7 @@ public class SeatInfoActivity extends AppCompatActivity implements ISeatInfoView
         if (seatCount > 0) {
             PaymentInfo paymentInfo = getIntent().getParcelableExtra("paymentinfo");
 
-            if (MySharedPreference.readBoolean(MySharedPreference.SEATSELECTED_BUS1, false))
+            if (paymentInfo.getBusinfo2() != null)
                 paymentInfo.setSeatCount_bus2(seatCount);
             else
                 paymentInfo.setSeatCount_bus1(seatCount);

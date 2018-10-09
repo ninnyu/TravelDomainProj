@@ -71,13 +71,30 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         String email = MySharedPreference.readString(MySharedPreference.USER_EMAIL, "");
         int totalSeats = paymentInfo.getSeatCount_bus1() + paymentInfo.getSeatCount_bus2();
 
-        String s = "Confirmation Number: \n\t\t\t" + paymentInfo.getId() +
-                "\nTicket Booked On: \t" + paymentInfo.getTime() +
-                "\nBus ID: \t\t\t\t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getBusid() +
-                "\nDeparture: \t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getBusdeparturetime() +
-                "\nArrival: \t\t\t\t\t\t\t\t\t\t\t\t\t" + paymentInfo.getBusinfo1().getDropingtime() +
-                "\nTotal Passengers: \t\t\t" + totalSeats +
-                "\nTotal Fare: \t\t\t\t\t\t\t\t\t\t" + paymentInfo.getTotal();
+        String s;
+
+        if (paymentInfo.getBusinfo2() == null) {
+            s = "Confirmation Number: \n     " + paymentInfo.getId() +
+                    "\nTicket Booked On:      " + paymentInfo.getTime() +
+                    "\nBus ID:      " + paymentInfo.getBusinfo1().getBusid() +
+                    "\nDeparture:      " + paymentInfo.getBusinfo1().getBusdeparturetime() +
+                    "\nArrival:      " + paymentInfo.getBusinfo1().getDropingtime() +
+                    "\nTotal Passengers:      " + paymentInfo.getSeatCount_bus1() +
+                    "\nTotal Fare:      " + paymentInfo.getTotal();
+        } else {
+            s = "Confirmation Number: \n      " + paymentInfo.getId() +
+                    "\nTicket Booked On:      " + paymentInfo.getTime() +
+                    "\nBus One ID:      " + paymentInfo.getBusinfo1().getBusid() +
+                    "\nBus One Departure:      " + paymentInfo.getBusinfo1().getBusdeparturetime() +
+                    "\nBus One Arrival:      " + paymentInfo.getBusinfo1().getDropingtime() +
+                    "\nBus One Total Passengers:      " + paymentInfo.getSeatCount_bus1() +
+
+                    "\n\nBus Two ID:      " + paymentInfo.getBusinfo2().getBusid() +
+                    "\nBus Two Departure:      " + paymentInfo.getBusinfo2().getBusdeparturetime() +
+                    "\nBus Two Arrival:      " + paymentInfo.getBusinfo2().getDropingtime() +
+                    "\nBus Two Total Passengers:      " + paymentInfo.getSeatCount_bus2() +
+                    "\nTotal Fare:      " + paymentInfo.getTotal();
+        }
 
         tvConfirmationSummary.setText(s);
 
@@ -100,12 +117,40 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         }
 
         try {
+            String body;
+
+            if (paymentInfo.getBusinfo2() == null) {
+                body = "Here is the confirmation for your bus ticket reservation made on Road Trip app!\n\n" +
+                        "Confirmation Number: " + paymentInfo.getId() + "\n" +
+                        "Booked On: " + paymentInfo.getTime() + "\n" +
+                        "Bus ID: " + paymentInfo.getBusinfo1().getBusid() + "\n" +
+                        "Departure: " + paymentInfo.getBusinfo1().getBusdeparturetime() + "\n" +
+                        "Arrival: " + paymentInfo.getBusinfo1().getDropingtime() + "\n" +
+                        "Total Passengers: " + totalSeats + "\n" +
+                        "Total Fare: " + paymentInfo.getTotal() + "\n\n" +
+                        "In the attachment, you will find a QR Code. You can use it to board the bus as proof of your ticket.";
+            } else {
+                body = "Here is the confirmation for your bus ticket reservation made on Road Trip app!\n\n" +
+                        "\nTicket Booked On: " + paymentInfo.getTime() +
+                        "\nBus One ID: " + paymentInfo.getBusinfo1().getBusid() +
+                        "\nBus One Departure: " + paymentInfo.getBusinfo1().getBusdeparturetime() +
+                        "\nBus One Arrival: " + paymentInfo.getBusinfo1().getDropingtime() +
+                        "\nBus One Total Passengers: " + paymentInfo.getSeatCount_bus1() +
+
+                        "\n\nBus Two ID: " + paymentInfo.getBusinfo2().getBusid() +
+                        "\nBus Two Departure: " + paymentInfo.getBusinfo2().getBusdeparturetime() +
+                        "\nBus Two Arrival: " + paymentInfo.getBusinfo2().getDropingtime() +
+                        "\nBus Two Total Passengers: " + paymentInfo.getSeatCount_bus2() +
+                        "\nTotal Fare: " + paymentInfo.getTotal() +
+                        "\n\nIn the attachment, you will find a QR Code. You can use it to board the bus as proof of your ticket.";
+            }
+
             Message m = buildMessage(
                     createSessionObject(),
                     /*TODO EMAIL*/,
                     MySharedPreference.readString(MySharedPreference.USER_EMAIL, ""),
                     "Roat Trip Bus Ticket Confirmation",
-                    "Here is the confirmation for your bus ticket reservation made on Road Trip!\n",
+                    body,
                     file.toString());
             new PaymentConfirmationActivity.SendMailTask().execute(m);
         } catch (MessagingException e) {
@@ -175,7 +220,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(/*TODO email user and password*/);
+                return new PasswordAuthentication(/*TODO EMAIL USER AND PASS*/);
             }
         });
     }

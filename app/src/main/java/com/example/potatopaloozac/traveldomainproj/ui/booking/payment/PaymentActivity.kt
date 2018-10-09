@@ -86,6 +86,7 @@ class PaymentActivity : AppCompatActivity() {
             SeatInfoActivity.activity.finish()
         if (PassengerDetailsActivity.activity != null)
             PassengerDetailsActivity.activity.finish()
+        finish()
     }
 
     private fun getThingToBuy(paymenT_INTENT_SALE: String): PayPalPayment {
@@ -119,7 +120,6 @@ class PaymentActivity : AppCompatActivity() {
         private val TAG = "paypalactivitytag"
 
         private val CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK
-
         private val CONFIG_CLIENT_ID = "credentials from developer.paypal.com"
 
         private val config = PayPalConfiguration()

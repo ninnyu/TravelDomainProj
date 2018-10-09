@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        android:layout_above="@+id/bt_bookSeats">
+        android:layout_above="@+id/layout_seatCount">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +77,23 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_seatCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_above="@id/bt_bookSeats"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Seats Selected:"/>
+        <TextView
+            android:id="@+id/tv_seatsSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_bookSeats"

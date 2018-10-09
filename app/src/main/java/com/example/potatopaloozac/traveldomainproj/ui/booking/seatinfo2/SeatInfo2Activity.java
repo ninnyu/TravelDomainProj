@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.potatopaloozac.traveldomainproj.R;
@@ -15,12 +16,12 @@ import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
 import com.example.potatopaloozac.traveldomainproj.adapter.BusSeatAdapter;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.SeatinformationItem;
-import com.example.potatopaloozac.traveldomainproj.ui.booking.passengerdetails.PassengerDetailsActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.seatinfo.SeatInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -28,12 +29,16 @@ public class SeatInfo2Activity extends AppCompatActivity implements ISeatInfoVie
 
     private static final String TAG = "SeatInfo2ActivityTAG";
 
+    @BindView(R.id.tv_seatsSelected)
+    TextView tvSeatsSelected;
+
     private ISeatInfoPresenter2 seatInfoPresenter;
     private List<BusSeat> mylist;
     private RecyclerView recyclerView_seat;
     private BusSeatAdapter myAdapter;
     private static int columns = 5;
     private int seatCount = 0;
+    private ArrayList<Integer> seatSelectedList;
 
     public static Activity activity;
 
@@ -51,17 +56,38 @@ public class SeatInfo2Activity extends AppCompatActivity implements ISeatInfoVie
         recyclerView_seat = findViewById(R.id.recyclerview_seat);
 
         mylist = new ArrayList<>();
+        seatSelectedList = new ArrayList<>();
 
         myAdapter = new BusSeatAdapter(mylist, new BusSeatAdapter.SeatOnClickListener() {
             @Override
             public void onitemclick(BusSeat busSeat) {
                 if (busSeat.getType() == 0) {
                     busSeat.setType(2);
+                    seatSelectedList.add(busSeat.getSeatNum());
                     seatCount++;
+
+                    String msg = new String();
+
+                    for(int seatNum: seatSelectedList){
+                        msg = msg + "  " + seatNum;
+                    }
+
+                    tvSeatsSelected.setText(msg);
                     Log.d(TAG, "onitemclick: " + seatCount);
                 } else if (busSeat.getType() == 2) {
                     busSeat.setType(0);
+                    int x = seatSelectedList.indexOf(busSeat.getSeatNum());
+                    seatSelectedList.remove(x);
                     seatCount--;
+
+                    String msg = new String();
+
+                    for(int seatNum: seatSelectedList){
+                        msg = msg + "  "+ seatNum;
+
+                    }
+                    tvSeatsSelected.setText(msg);
+
                     Log.d(TAG, "onitemclick: " + seatCount);
                 }
                 myAdapter.notifyDataSetChanged();
