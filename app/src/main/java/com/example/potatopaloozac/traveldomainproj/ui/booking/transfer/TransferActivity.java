@@ -69,8 +69,8 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
         //String msg =  "From: "+ city_start+" to: "+ city_nm + "\n"
         //            + "From: "+ city_nm+" to: "+ city_destination + "\n";
 
-        msg_list.add( "From: "+ city_start+" to: "+ city_nm );
-        msg_list.add("From: "+ city_nm+" to: "+ city_destination);
+        msg_list.add( "From: "+ city_start+"     To: "+ city_nm );
+        msg_list.add("From: "+ city_nm+"     To: "+ city_destination);
 
         //textView_start_transfer.setText(msg_array[idx]);
 
@@ -113,7 +113,7 @@ public class TransferActivity extends AppCompatActivity implements IViewTransfer
     @Override
     public void setBusInfo(String busInfo) {
         String msg = textView_start_transfer.getText().toString();
-        textView_start_transfer.setText(msg+"\n"+ msg_list.get(idx)+"\n"+ "Bus Information: "+"\n"+busInfo+"\n");
+        textView_start_transfer.setText(msg+"\n"+ msg_list.get(idx)+"\n"+busInfo+"\n");
         idx++;
         Log.d("MyInfo", msg+"\n"+busInfo);
     }

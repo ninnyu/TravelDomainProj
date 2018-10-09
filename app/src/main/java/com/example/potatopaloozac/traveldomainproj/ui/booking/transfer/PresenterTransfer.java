@@ -105,11 +105,11 @@ public class PresenterTransfer implements IPresenterTransfer, IDataManager.OnTra
     @Override
     public void showBus(BusinformationItem bus_info) {
         Log.d("MyPresenter", bus_info.toString());
-        String msg= "Registration Number: "+bus_info.getBusregistrationno()+"\n"
-                   +"Bus Type: "+ bus_info.getBustype()+"\n"
-                   +"Departure Time: "+ bus_info.getBusdeparturetime() +"\n"
-                   +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
-                   + "Droping Time: "+ bus_info.getDropingtime();
+        String msg= "Bus Type: "+ bus_info.getBustype()+"\n"
+                +"Journey Duration: "+ bus_info.getJournyduration() +"\n"
+                +"Departure: "+ bus_info.getBusdeparturetime() +"\n"
+                +"Arrival: "+ bus_info.getDropingtime()+"\n"
+                +"Fare Per Person: "+ bus_info.getFare();
         view.setBusInfo(msg);
     }
 

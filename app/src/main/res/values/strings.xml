@@ -20,6 +20,7 @@
     <string name="arrival">Arrival:</string>
     <string name="farePerPerson">Fare Per Person:</string>
     <string name="chooseSeats">Choose Seats For This Bus</string>
+    <string name="transferChooseSeats">Choose Seats These Buses</string>
     <string name="ok">Ok</string>
     <string name="bookSeats">Book Seats</string>
     <string name="chooseSeatDesc">
