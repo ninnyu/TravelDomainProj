@@ -163,6 +163,28 @@
 
             </LinearLayout>
 
+
+            <!--map here
+
+
+
+            -->
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="352dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                map:layout_constraintBottom_toBottomOf="parent"
+                map:layout_constraintEnd_toEndOf="parent"
+                map:layout_constraintStart_toStartOf="parent"
+                tools:context=".ui.map.MapsActivity" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />

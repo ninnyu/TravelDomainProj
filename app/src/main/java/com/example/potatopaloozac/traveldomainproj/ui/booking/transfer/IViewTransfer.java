@@ -1,12 +1,11 @@
 package com.example.potatopaloozac.traveldomainproj.ui.booking.transfer;
 
-import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
-
 public interface IViewTransfer {
 
    void showTransfer(String city_nm);
    void setCityInfo(String city_info);
    void showStartTransRoute(String info);
    void showTransDesRoute(String info);
-   void setBusInfo(String msg);
+   void setBusInfoStartTrans(String busInfo);
+   void setBusInfoTransDes(String busInfo);
 }

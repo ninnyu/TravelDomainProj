@@ -13,7 +13,8 @@ public interface INetworkHelper {
     void getRouteInfo(OnRouteIDListener routeIDListener);
     void getRouteInfo(LatLng city_start, LatLng city_destination, LatLng city_transfer, OnTransferListener listener);
     void getBusInfo(OnBusInfoListener busInfoListener);
-    void getBusInfo(String routeid, OnTransferListener busInfoListener);
+    void getBusInfoStartTrans(String routeid, OnTransferListener busInfoListener);
+    void getBusInfoTransDes(String routeid, OnTransferListener busInfoListener);
     void getSeatInfo(OnSeatInfoListener seatInfoListener);
     void getCouponInfoList(OnCouponListener couponListener);
     void findRoute(String city_start, String city_destination, String city_transfer, IDataManager.OnTransferListener listener);
