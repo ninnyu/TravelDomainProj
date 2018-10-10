@@ -59,11 +59,6 @@ public class HomeActivity extends AppCompatActivity {
         dataEntryList.add(new ValueDataEntry("Denver, CO", 17.4));
         dataEntryList.add(new ValueDataEntry("St Charles, IL", 51000 / 1000000));
 
-        /*Pie pie = AnyChart.pie();
-        pie.data(dataEntryList);
-        pie.title("Most Popular Destinations");
-        anyChartView.setChart(pie);*/
-
         Cartesian cartesian = AnyChart.cartesian();
         Column column = cartesian.column(dataEntryList);
 
@@ -86,8 +81,6 @@ public class HomeActivity extends AppCompatActivity {
 
         cartesian.xAxis(0).title("Cities");
         cartesian.yAxis(0).title("Visitors (Millions)");
-
-        cartesian.labels().rotation(90);
 
         anyChartView.setChart(cartesian);
     }

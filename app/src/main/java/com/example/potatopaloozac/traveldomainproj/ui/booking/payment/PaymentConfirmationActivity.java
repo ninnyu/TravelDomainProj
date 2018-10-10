@@ -66,6 +66,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_confirmation);
         ButterKnife.bind(this);
 
+        Log.d(TAG, "onCreate: ");
+
         paymentInfo = getIntent().getParcelableExtra("paymentinfo");
 
         String email = MySharedPreference.readString(MySharedPreference.USER_EMAIL, "");
@@ -131,6 +133,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
                         "In the attachment, you will find a QR Code. You can use it to board the bus as proof of your ticket.";
             } else {
                 body = "Here is the confirmation for your bus ticket reservation made on Road Trip app!\n\n" +
+                        "Confirmation Number: " + paymentInfo.getId() + "\n" +
                         "\nTicket Booked On: " + paymentInfo.getTime() +
                         "\nBus One ID: " + paymentInfo.getBusinfo1().getBusid() +
                         "\nBus One Departure: " + paymentInfo.getBusinfo1().getBusdeparturetime() +
@@ -147,7 +150,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
             Message m = buildMessage(
                     createSessionObject(),
-                    /*TODO EMAIL*/,
+                    /*TODO add email*/,
                     MySharedPreference.readString(MySharedPreference.USER_EMAIL, ""),
                     "Roat Trip Bus Ticket Confirmation",
                     body,
@@ -220,7 +223,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(/*TODO EMAIL USER AND PASS*/);
+                return new PasswordAuthentication(/*TODO add email user and pass*/);
             }
         });
     }

@@ -66,6 +66,7 @@ class PaymentActivity : AppCompatActivity() {
         var i: Intent = Intent(this, PaymentConfirmationActivity::class.java)
         i.putExtra("paymentinfo", paymentInfo)
         startActivity(i)
+        finish()
     }
 
     fun onBuyPress(view: View) {
@@ -86,7 +87,6 @@ class PaymentActivity : AppCompatActivity() {
             SeatInfoActivity.activity.finish()
         if (PassengerDetailsActivity.activity != null)
             PassengerDetailsActivity.activity.finish()
-        finish()
     }
 
     private fun getThingToBuy(paymenT_INTENT_SALE: String): PayPalPayment {
