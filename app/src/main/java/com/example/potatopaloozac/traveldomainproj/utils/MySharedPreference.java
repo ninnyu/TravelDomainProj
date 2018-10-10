@@ -27,6 +27,8 @@ public class MySharedPreference {
 
     public static final String DEPARTURE_DATE = "DEPARTURE_DATE";
 
+    public static final String SEATSELECTED_BUS1 = "SEATSELECTED_BUS1";
+
     private static SharedPreferences sp;
 
     private MySharedPreference() {

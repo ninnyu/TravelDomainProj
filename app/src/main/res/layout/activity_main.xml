@@ -12,13 +12,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:text="Technologies used in this app:"
         android:textSize="24sp"/>
 
-    <TextView
-        android:id="@+id/tv_techsUsed"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_techsUsed"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"/>
+        <TextView
+            android:id="@+id/tv_whodidwhat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="20dp"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_startDemo"

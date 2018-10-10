@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/NoAnimTheme" />
@@ -36,21 +36,21 @@
             android:theme="@style/NoAnimTheme" />
         <activity android:name=".ui.booking.transfer.TransferActivity" />
         <activity android:name=".ui.booking.seatinfo.SeatInfoActivity" />
+        <activity android:name=".ui.booking.seatinfo2.SeatInfo2Activity" />
         <activity android:name=".ui.booking.passengerdetails.PassengerDetailsActivity" />
+        <activity android:name=".ui.booking.payment.PaymentActivity" />
         <activity
             android:name=".ui.booking.payment.PaymentConfirmationActivity"
             android:noHistory="true" />
-        <activity android:name=".ui.coupon.CouponActivity" />
         <activity
             android:name=".ui.gameschedule.GameScheduleActivity"
             android:theme="@style/NoAnimTheme" />
+        <activity android:name=".ui.coupon.CouponActivity" />
+        <activity android:name=".ui.orderhistory.OrderHistoryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity android:name=".ui.booking.payment.PaymentActivity" />
-        <activity android:name=".ui.orderhistory.OrderHistoryActivity"></activity>
     </application>
 
 </manifest>

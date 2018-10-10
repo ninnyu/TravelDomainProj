@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.PassengerDetailsAdapter;
 import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
+import com.example.potatopaloozac.traveldomainproj.data.network.model.PaymentInfo;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.payment.PaymentActivity;
 import com.example.potatopaloozac.traveldomainproj.utils.MySharedPreference;
 
@@ -24,7 +25,7 @@ public class PassengerDetailsActivity extends AppCompatActivity {
 
     private RecyclerView rv_passengerDetails;
     private Button bt_pay;
-    private int seatCount;
+    PaymentInfo paymentInfo;
 
     public static Activity activity;
 
@@ -37,8 +38,9 @@ public class PassengerDetailsActivity extends AppCompatActivity {
 
         MySharedPreference.writeBoolean(MySharedPreference.PASSENGER_VALIDATED, false);
 
-        seatCount = getIntent().getIntExtra("seatcount", 0);
-        Log.d(TAG, "onCreate: " + seatCount);
+        paymentInfo = getIntent().getParcelableExtra("paymentinfo");
+
+        int seatCount = paymentInfo.getSeatCount_bus1() + paymentInfo.getSeatCount_bus2();
 
         rv_passengerDetails = findViewById(R.id.rv_passengerDetails);
         bt_pay = findViewById(R.id.bt_pay);
@@ -54,10 +56,8 @@ public class PassengerDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (MySharedPreference.readBoolean(MySharedPreference.PASSENGER_VALIDATED, false)) {
-                    BusinformationItem businformationItem = getIntent().getParcelableExtra("businfo");
                     Intent i = new Intent(PassengerDetailsActivity.this, PaymentActivity.class);
-                    i.putExtra("seatcount", seatCount);
-                    i.putExtra("businfo", businformationItem);
+                    i.putExtra("paymentinfo", paymentInfo);
                     startActivity(i);
                 } else {
                     Toast.makeText(PassengerDetailsActivity.this, "Fields are not valid", Toast.LENGTH_SHORT).show();

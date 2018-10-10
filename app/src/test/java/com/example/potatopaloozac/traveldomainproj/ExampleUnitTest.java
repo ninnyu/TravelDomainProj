@@ -1,5 +1,8 @@
 package com.example.potatopaloozac.traveldomainproj;
 
+import com.example.potatopaloozac.traveldomainproj.adapter.BusSeat;
+import com.example.potatopaloozac.traveldomainproj.adapter.GameSchedule;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +13,26 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testSeat() {
+        BusSeat busSeat = new BusSeat(1, 10);
+        int type = busSeat.getType();
+        int seatNum = busSeat.getSeatNum();
+
+        assertEquals(type,1);
+        assertEquals(seatNum,10);
+    }
+
+    @Test
+    public void testSchedule(){
+        GameSchedule gameSchedule = new GameSchedule("9 pm TEAM1 TEAM2");
+        String time = gameSchedule.getTime();
+        String home = gameSchedule.getHome();
+        String away = gameSchedule.getAway();
+
+        assertEquals(time, "9 pm");
+        assertEquals(home, "TEAM1");
+        assertEquals(away,"TEAM2");
     }
 }

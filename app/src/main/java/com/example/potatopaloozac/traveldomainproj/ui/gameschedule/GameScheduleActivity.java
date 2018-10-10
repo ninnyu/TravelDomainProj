@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.example.potatopaloozac.traveldomainproj.R;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameSchedule;
 import com.example.potatopaloozac.traveldomainproj.adapter.GameScheduleAdapter;
-import com.example.potatopaloozac.traveldomainproj.data.network.model.BusinformationItem;
 import com.example.potatopaloozac.traveldomainproj.ui.HomeActivity;
 import com.example.potatopaloozac.traveldomainproj.ui.booking.BookingActivity;
 
@@ -29,6 +28,8 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.bt_schedule)
+    Button btSchedule;
 
     private IPresenterGameschedule presenter;
     private List<GameSchedule> mygamelist;
@@ -42,6 +43,7 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        btSchedule.setBackground(getResources().getDrawable(R.drawable.ic_toolbar_schedule_blue_24dp));
 
         presenter = new PresenterGameSchedule(this);
         mygamelist = new ArrayList<>();
@@ -61,20 +63,6 @@ public class GameScheduleActivity extends AppCompatActivity implements IViewGame
         String[] s = (businformationItem.getJournyduration().split("Hrs"));
         String bus_departure = businformationItem.getBusdeparturetime();
         String bus_duration = s[0] + ":00:00 Hrs";*/
-
-        /**{
-         "Businformation":
-         [
-         {"busid
-         ":"102","busregistrationno":"TC102",
-         "bustype":"Sleeper,AC,LCD","
-         busdeparturetime":"09:00:00 PM",
-         "journyduration":"08:00:00 Hrs",
-         "Fare":"700",
-         "boardingtime":"07:15:00 AM",
-         "dropingtime":"04:00:00 AM"}
-         ]}
-         */
 
         presenter.findGame("12:00:00 AM", "12:00:00 Hrs");
     }
